@@ -10,7 +10,7 @@
 #   Pierre Heger       — bio-informatics  (GitHub handle TBD)
 # When Lucie and Pierre share their GitHub handles, add them to
 # /daemon/, /client/, /patterns/, /examples/, /tests/ (Lucie) and to
-# /docs/science/ + /06-scientific-foundations.md (Pierre).
+# /docs/science/ + /research/scientific-foundations.md (Pierre).
 #
 # NOTE — collaborative model:
 # Branch protection is configured with `require_code_owner_reviews: false`,
@@ -35,11 +35,12 @@
 # Bio-informatics (body mapping, perception science, accessibility)
 # Owner TBD — catch-all with Marc for now, update when bio-info teammate joins
 /docs/science/                 @marc-alexis-com
-/06-scientific-foundations.md  @marc-alexis-com
+/research/scientific-foundations.md  @marc-alexis-com
 
 # Research report + poster + business (market, BOM analysis, SWOT)
 /research-report/              @marc-alexis-com @lilouconstantin
-/hardware-research.md          @marc-alexis-com @AlexisJOLLY
+/research/hardware.md          @marc-alexis-com @AlexisJOLLY
+/research/                     @marc-alexis-com
 
 # Project config stays with the lead
 /.github/                      @marc-alexis-com

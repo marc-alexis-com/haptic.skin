@@ -29,7 +29,7 @@ hardware/
 - **Flyback diodes (1N4148) on every motor** to suppress back-EMF spikes.
 - **Power budget**: USB 5 V / 500 mA. 16 motors at full draw = ~1.3 A >
   limit. Firmware enforces max 6–8 concurrent motors.
-- See `hardware-research.md` and research-report section 3 for rationale.
+- See `../research/hardware.md` and research-report section 3 for rationale.
 
 ## BOM summary (target ≤ 100 €)
 

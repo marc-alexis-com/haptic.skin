@@ -15,7 +15,7 @@ et les milestones. Pour la scope : voir [`scope.md`](scope.md).
 - [Marc-Alexis Manso-Peters](https://github.com/marc-alexis-com)
 - [Alexis Jolly](https://github.com/AlexisJOLLY)
 
-**Dossiers** : `firmware/`, `hardware/`, `hardware-research.md`
+**Dossiers** : `firmware/`, `hardware/`, `research/hardware.md`
 
 ### Missions
 
@@ -73,7 +73,7 @@ et les milestones. Pour la scope : voir [`scope.md`](scope.md).
 **Membre** :
 - Pierre Heger (handle GitHub à venir)
 
-**Dossiers** : `docs/science/`, `06-scientific-foundations.md`,
+**Dossiers** : `docs/science/`, `research/scientific-foundations.md`,
 sections §6 & §7 de `research-report/main.typ`
 
 ### Missions — Pierre doit brainstormer + sourcer
@@ -86,7 +86,7 @@ sections §6 & §7 de `research-report/main.typ`
 - **Rôle et actions possibles de l'outil** — *exploration* : vibrations
   seules, ou aussi **lumières** (LED) ? thermique ? EMS ? (décision v1 à
   valider)
-- **State of the art scientifique** — finaliser `06-scientific-foundations.md`
+- **State of the art scientifique** — finaliser `research/scientific-foundations.md`
   et §6 du rapport. Sourcer Bolanowski (1988), Van Erp (2005),
   Israr-Poupyrev (2011 — "Tactile Brush"), etc.
 - **Protocole test utilisateur** pour le cas d'usage navigation aveugle
