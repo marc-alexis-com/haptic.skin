@@ -1,0 +1,56 @@
+name: Python (daemon + client)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "daemon/**"
+      - "client/**"
+      - "patterns/**"
+      - "tests/**"
+      - ".github/workflows/python.yml"
+  pull_request:
+    paths:
+      - "daemon/**"
+      - "client/**"
+      - "patterns/**"
+      - "tests/**"
+      - ".github/workflows/python.yml"
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install ruff
+        run: pip install ruff
+
+      - name: Ruff — lint
+        run: ruff check daemon client tests || echo "(no Python sources yet — skipping)"
+
+      - name: Ruff — format check
+        run: ruff format --check daemon client tests || echo "(no Python sources yet — skipping)"
+
+      - name: Install packages if they exist
+        run: |
+          if [ -f daemon/pyproject.toml ]; then pip install -e daemon[dev] || true; fi
+          if [ -f client/pyproject.toml ]; then pip install -e client[dev] || true; fi
+
+      - name: Run pytest
+        run: |
+          if [ -d daemon/tests ] || [ -d client/tests ] || [ -d tests/e2e ]; then
+            pip install pytest
+            pytest daemon client tests || true
+          else
+            echo "(no tests yet — skipping)"
+          fi

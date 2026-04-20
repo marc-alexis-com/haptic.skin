@@ -1,0 +1,31 @@
+# CODEOWNERS — auto-requests review from the listed owners when matching
+# files are changed in a PR.
+#
+# Currently all paths fall back to @marc-alexis-com while the team fills in
+# their GitHub usernames. Replace the placeholder comments with real handles
+# once everyone has an account linked (e.g. @firstname-lastname).
+
+# Default owner for anything not matched below
+*                           @marc-alexis-com
+
+# Firmware + hardware — embedded engineers
+/firmware/                  @marc-alexis-com  # TODO: add @embedded-1 @embedded-2
+/hardware/                  @marc-alexis-com  # TODO: add @embedded-1 @embedded-2
+
+# Daemon + client + patterns + examples + tests — software engineers
+/daemon/                    @marc-alexis-com  # TODO: add @software-2
+/client/                    @marc-alexis-com  # TODO: add @software-2
+/patterns/                  @marc-alexis-com  # TODO: add @software-2 @bio-info
+/examples/                  @marc-alexis-com  # TODO: add @software-2
+/tests/                     @marc-alexis-com  # TODO: add @software-2
+
+# Documentation + science — bio-informatics
+/docs/science/              @marc-alexis-com  # TODO: add @bio-info
+/06-scientific-foundations.md  @marc-alexis-com  # TODO: add @bio-info
+
+# Research report + poster + business — IT for Finance + Bio-info
+/research-report/           @marc-alexis-com  # TODO: add @it-finance @bio-info
+
+# Project config stays with the lead
+/.github/                   @marc-alexis-com
+CLAUDE.md                   @marc-alexis-com

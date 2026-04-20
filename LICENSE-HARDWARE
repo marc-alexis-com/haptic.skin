@@ -1,0 +1,22 @@
+HAPTIC.SKIN — Hardware License
+
+The hardware design files under `hardware/` (KiCad schematics, PCB layouts,
+3D models, BOM, mechanical drawings) are licensed under the
+CERN Open Hardware Licence Version 2 — Permissive (CERN-OHL-P v2).
+
+Full license text: https://ohwr.org/cern_ohl_p_v2.pdf
+SPDX identifier:   CERN-OHL-P-2.0
+
+Copyright (c) 2026 Marc-Alexis Manso-Peters and HAPTIC.SKIN contributors.
+
+This licence covers:
+  - Schematics and PCB files (*.kicad_sch, *.kicad_pcb, *.kicad_pro, *.lib)
+  - 3D models and mechanical drawings (*.stl, *.3mf, *.step, *.f3d)
+  - Bill of Materials (BOM) and assembly documentation
+  - Any hardware documentation under `hardware/`
+
+Software (firmware, daemon, client library) is licensed separately under
+the MIT License — see `LICENSE`.
+
+Documentation, the research report, and the poster are licensed under
+CC-BY-SA 4.0 — see `LICENSE-DOCS`.

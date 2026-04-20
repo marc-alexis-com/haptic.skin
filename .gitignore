@@ -1,0 +1,62 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg
+pip-wheel-metadata/
+
+# --- MicroPython ---
+*.mpy
+
+# --- Environment / secrets ---
+.env
+.env.local
+*.pem
+*.key
+
+# --- KiCad ---
+*-backups/
+*.bak
+*.kicad_pcb-bak
+*.sch-bak
+fp-info-cache
+*.lck
+*~
+
+# --- 3D / CAD ---
+*.stl.bak
+*.3mf.bak
+
+# --- Typst ---
+# Keep the committed PDF (Rapport Approfondi.pdf); ignore intermediate builds
+main.pdf
+
+# --- OS / IDE ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- Obsidian vault metadata (if any ever lands here) ---
+.obsidian/
+
+# --- EFREI internal docs (not for public release) ---
+notion-infos.txt
+candidature-et-retour-jury.txt
+
+# --- Misc ---
+research-report/a-mail.png
+*.log
+node_modules/
