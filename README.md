@@ -134,11 +134,16 @@ point for external contributors.
 
 EFREI Paris ING2 Innovation Project 2025-2026. Mentor: Olivier Girinsky.
 
-- **Marc-Alexis Manso-Peters** — project lead, Python architecture, daemon, API
-- *(2× Embedded systems — firmware Pico, PCA9685, IMU, PCB)*
-- *(2× Software engineering — daemon, client lib, IPC, gesture recognition)*
-- *(1× Bio-informatics — body mapping, accessibility, scientific foundations)*
-- *(1× IT for Finance — market analysis, business model, poster, report)*
+- **[Marc-Alexis Manso-Peters](https://github.com/marc-alexis-com)** — project lead, embedded, Python architecture
+- **[Alexis Jolly](https://github.com/AlexisJOLLY)** — embedded systems (firmware Pico, PCA9685, IMU, PCB)
+- **[Yorgo Haykal](https://github.com/yorgo-haykal)** — software engineering (daemon, client lib, IPC, gestures)
+- **[Lilou Constantin](https://github.com/lilouconstantin)** — IT for Finance (market analysis, business model, poster, report)
+- *(1× Software engineering — TBD)*
+- *(1× Bio-informatics — TBD, body mapping + accessibility + scientific foundations)*
+
+Although each member owns a primary area, everyone can contribute to any
+part of the codebase — CODEOWNERS only auto-routes review requests, it
+does not restrict who can push or approve.
 
 ## Contact
 

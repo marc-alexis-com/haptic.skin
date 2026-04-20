@@ -1,38 +1,44 @@
 # CODEOWNERS — auto-requests review from the listed owners when matching
 # files are changed in a PR.
 #
-# Current team (April 2026):
-#   @marc-alexis-com   — project lead, Python architecture
-#   @yorgo-haykal      — role TBD
-#   @lilouconstantin   — role TBD
-#   @AlexisJOLLY       — role TBD
-#   TODO: add 2 remaining team members once their GitHub handles are known
+# Team (April 2026):
+#   @marc-alexis-com   — project lead + embedded
+#   @AlexisJOLLY       — embedded
+#   @yorgo-haykal      — software
+#   @lilouconstantin   — IT for Finance (market, business, poster, report)
+#   TODO: +1 software, +1 bio-informatics (handles unknown — kick-off April 10)
 #
-# This file is deliberately broad until roles are confirmed. Specialize per
-# directory (firmware vs daemon vs research) once everyone's assignment is
-# locked in.
+# NOTE — collaborative model:
+# Branch protection is configured with `require_code_owner_reviews: false`,
+# so ANY collaborator can approve any PR. This file only controls which
+# reviewers are AUTO-REQUESTED when a PR touches a given area — everyone
+# stays free to contribute and review anywhere.
 
-# Default — any team member can review until roles are specialized
-*                              @marc-alexis-com @yorgo-haykal @lilouconstantin @AlexisJOLLY
+# Default — project lead is always a fallback reviewer
+*                              @marc-alexis-com
 
-# Firmware + hardware — embedded engineers
-/firmware/                     @marc-alexis-com @yorgo-haykal @lilouconstantin @AlexisJOLLY  # TODO: narrow to 2 embedded leads
-/hardware/                     @marc-alexis-com @yorgo-haykal @lilouconstantin @AlexisJOLLY  # TODO: narrow to 2 embedded leads
+# Embedded (Pico firmware + KiCad + PCB + 3D prints)
+/firmware/                     @marc-alexis-com @AlexisJOLLY
+/hardware/                     @marc-alexis-com @AlexisJOLLY
 
-# Daemon + client + patterns + examples + tests — software engineers
-/daemon/                       @marc-alexis-com @yorgo-haykal @lilouconstantin @AlexisJOLLY  # TODO: narrow to Marc + 1 software
-/client/                       @marc-alexis-com @yorgo-haykal @lilouconstantin @AlexisJOLLY  # TODO: narrow to Marc + 1 software
-/patterns/                     @marc-alexis-com @yorgo-haykal @lilouconstantin @AlexisJOLLY
-/examples/                     @marc-alexis-com @yorgo-haykal @lilouconstantin @AlexisJOLLY
-/tests/                        @marc-alexis-com @yorgo-haykal @lilouconstantin @AlexisJOLLY
+# Software (host daemon + client lib + patterns + examples + tests)
+/daemon/                       @marc-alexis-com @yorgo-haykal
+/client/                       @marc-alexis-com @yorgo-haykal
+/patterns/                     @marc-alexis-com @yorgo-haykal
+/examples/                     @marc-alexis-com @yorgo-haykal
+/tests/                        @marc-alexis-com @yorgo-haykal
 
-# Documentation + science — bio-informatics
-/docs/science/                 @marc-alexis-com @yorgo-haykal @lilouconstantin @AlexisJOLLY  # TODO: narrow to bio-info
-/06-scientific-foundations.md  @marc-alexis-com @yorgo-haykal @lilouconstantin @AlexisJOLLY  # TODO: narrow to bio-info
+# Bio-informatics (body mapping, perception science, accessibility)
+# Owner TBD — catch-all with Marc for now, update when bio-info teammate joins
+/docs/science/                 @marc-alexis-com
+/06-scientific-foundations.md  @marc-alexis-com
 
-# Research report + poster + business — IT for Finance + Bio-info
-/research-report/              @marc-alexis-com @yorgo-haykal @lilouconstantin @AlexisJOLLY  # TODO: narrow to IT-finance + bio-info
+# Research report + poster + business (market, BOM analysis, SWOT)
+/research-report/              @marc-alexis-com @lilouconstantin
+/hardware-research.md          @marc-alexis-com @AlexisJOLLY
 
 # Project config stays with the lead
 /.github/                      @marc-alexis-com
 CLAUDE.md                      @marc-alexis-com
+README.md                      @marc-alexis-com
+CONTRIBUTING.md                @marc-alexis-com
