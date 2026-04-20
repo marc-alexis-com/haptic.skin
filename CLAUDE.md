@@ -72,13 +72,33 @@ Broader use cases: spatial notifications, gesture response, accessibility (visua
 - **Marc-Alexis Manso-Peters** (`@marc-alexis-com`) — embedded + project lead.
 - **Alexis Jolly** (`@AlexisJOLLY`) — embedded (firmware Pico, PCA9685, ULN2803A, MPU6050, PCB).
 - **Yorgo Haykal** (`@yorgo-haykal`) — software (daemon, client lib, IPC, gesture recognition).
+- **Lucie Moreau** (handle TBD) — software (daemon, client lib, patterns, integrations).
+- **Pierre Heger** (handle TBD) — bio-informatics (body mapping, accessibility, scientific state of the art).
 - **Lilou Constantin** (`@lilouconstantin`) — IT for Finance (market, business model, poster, report).
-- *+1 software engineer — TBD.*
-- *+1 bio-informatics — TBD (body mapping, accessibility, scientific state of the art).*
 
 Marc-Alexis and Alexis are symmetric embedded co-workers. Everyone can
 contribute to any area — CODEOWNERS only auto-routes review requests,
 it does not restrict who can push or approve.
+
+## Team Organization (4 ESPACES)
+The team is split into **4 ESPACES**, each with a primary domain but no
+hard boundaries:
+- 🔧 **ROBOTNICS** (embedded) — Marc-Alexis, Alexis. `firmware/`, `hardware/`.
+- 💻 **BOUFFEUR DE CODE** (software) — Yorgo, Lucie. `daemon/`, `client/`, `patterns/`, `examples/`, `tests/`.
+- 🧬 **FEUILLE** (bio-informatics) — Pierre. `docs/science/`, `06-scientific-foundations.md`, report §6/§7.
+- 💰 **MONEYMAKER** (IT for Finance) — Lilou. `research-report/` §5/§10, poster, planning.
+
+See `docs/espaces.md` for detailed missions per ESPACE and
+`docs/scope.md` for the full MVP v1 definition.
+
+## Prototype Scope (v1, July 2026)
+The **minimum viable prototype** is: **1 necklace (8 ERM motors) + 2
+bracelets (4 motors + 1 MPU6050 IMU each)**, all driven by a single
+Raspberry Pi Pico over USB. The 3 wearables run simultaneously. Python
+daemon + `haptic-skin` pip package + 3 live demo scenarios + open-source
+code/schematics/docs. See `docs/scope.md` for the full definition and
+what is explicitly **out of scope** (no medical device, no wireless, no
+ML gesture recognition, no custom PCB).
 
 ## Key Dates (EFREI Calendar, 2026)
 - **Apr 6–10**: team candidacy period.

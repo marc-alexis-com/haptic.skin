@@ -137,9 +137,14 @@ EFREI Paris ING2 Innovation Project 2025-2026. Mentor: Olivier Girinsky.
 - **[Marc-Alexis Manso-Peters](https://github.com/marc-alexis-com)** — project lead, embedded (firmware Pico, PCA9685, IMU, PCB)
 - **[Alexis Jolly](https://github.com/AlexisJOLLY)** — embedded (firmware Pico, PCA9685, IMU, PCB)
 - **[Yorgo Haykal](https://github.com/yorgo-haykal)** — software (daemon, client lib, IPC, gestures)
+- **Lucie Moreau** *(GitHub handle TBD)* — software (daemon, client lib, patterns, integrations)
+- **Pierre Heger** *(GitHub handle TBD)* — bio-informatics (body mapping, accessibility, scientific foundations)
 - **[Lilou Constantin](https://github.com/lilouconstantin)** — IT for Finance (market analysis, business model, poster, report)
-- *(1× Software engineering — TBD)*
-- *(1× Bio-informatics — TBD, body mapping + accessibility + scientific foundations)*
+
+The team is organized in **4 ESPACES** (ROBOTNICS embedded, BOUFFEUR DE
+CODE software, FEUILLE bio-informatics, MONEYMAKER IT for Finance) — see
+[`docs/espaces.md`](docs/espaces.md) for who does what inside each space.
+For the prototype scope, see [`docs/scope.md`](docs/scope.md).
 
 Although each member owns a primary area, everyone can contribute to any
 part of the codebase — CODEOWNERS only auto-routes review requests, it
