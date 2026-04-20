@@ -12,8 +12,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `research-report/refs.yml` — Hayagriva bibliography consumed by `main.typ`.
 - `research-report/images/` — figures embedded in the report (architecture diagrams, etc.).
 - `research-report/Rapport Approfondi.pdf` — last committed PDF export. Regenerate when `main.typ` or `refs.yml` changes.
-- `hardware-research.md`, `06-scientific-foundations.md`, `research-08-similar-projects.md` — long-form research notes in English/Markdown. These **seed** `main.typ`; the Typst file is the canonical deliverable.
-- `research-prompt.md` — the original mega-prompt that orchestrated the parallel research agents. Re-run it (or parts of it) when refreshing a research axis.
+- `research/hardware.md`, `research/scientific-foundations.md`, `research/similar-projects.md` — long-form research notes in English/Markdown. These **seed** `main.typ`; the Typst file is the canonical deliverable.
+- `research/prompt.md` — the original mega-prompt that orchestrated the parallel research agents. Re-run it (or parts of it) when refreshing a research axis.
 - `notion-infos.txt` — raw Notion export of the EFREI *Projets Transverses* practical guide (deadlines, deposit process, Monday/Calendly workflow). Treat as authoritative for program rules.
 - `candidature-et-retour-jury.txt` — project deposit confirmation and jury return. Source of truth for what the jury validated and flagged.
 
@@ -32,7 +32,7 @@ Typst 0.14+ is installed (`/usr/bin/typst`). From `research-report/`:
 When editing `main.typ`, keep prose in **French** (the report's language) and match the existing tone of the committed sections.
 
 ## Core Concept
-- **Output**: 16 ERM vibration motors distributed across 3 wearables, driven by PWM via PCA9685 **+ ULN2803A Darlington transistors** (critical: PCA9685 sources only ~10 mA per channel; ERM motors draw 80–100 mA, so direct drive does not work — see `hardware-research.md` and §3 of the report).
+- **Output**: 16 ERM vibration motors distributed across 3 wearables, driven by PWM via PCA9685 **+ ULN2803A Darlington transistors** (critical: PCA9685 sources only ~10 mA per channel; ERM motors draw 80–100 mA, so direct drive does not work — see `research/hardware.md` and §3 of the report).
 - **Input**: IMU sensors (MPU6050) on each bracelet for gesture recognition (raise, tilt, rotate, shake).
 - **Controller**: Raspberry Pi Pico (non-W recommended; Pico 2 W as stretch for wireless) connected via USB to host PC.
 - **Software**: Python asyncio daemon on Linux exposing a local API, client library with predefined patterns.
@@ -85,7 +85,7 @@ The team is split into **4 ESPACES**, each with a primary domain but no
 hard boundaries:
 - 🔧 **ROBOTNICS** (embedded) — Marc-Alexis, Alexis. `firmware/`, `hardware/`.
 - 💻 **BOUFFEUR DE CODE** (software) — Yorgo, Lucie. `daemon/`, `client/`, `patterns/`, `examples/`, `tests/`.
-- 🧬 **FEUILLE** (bio-informatics) — Pierre. `docs/science/`, `06-scientific-foundations.md`, report §6/§7.
+- 🧬 **FEUILLE** (bio-informatics) — Pierre. `docs/science/`, `research/scientific-foundations.md`, report §6/§7.
 - 💰 **MONEYMAKER** (IT for Finance) — Lilou. `research-report/` §5/§10, poster, planning.
 
 See `docs/espaces.md` for detailed missions per ESPACE and

@@ -119,5 +119,5 @@ issues GitHub :
 - [`espaces.md`](espaces.md) — organisation en 4 ESPACES (qui fait quoi)
 - [`../research-report/main.typ`](../research-report/main.typ) — rapport
   de recherche approfondi (715 lignes, 11 sections)
-- [`../hardware-research.md`](../hardware-research.md) — analyse matérielle détaillée
-- [`../06-scientific-foundations.md`](../06-scientific-foundations.md) — fondements scientifiques
+- [`../research/hardware.md`](../research/hardware.md) — analyse matérielle détaillée
+- [`../research/scientific-foundations.md`](../research/scientific-foundations.md) — fondements scientifiques

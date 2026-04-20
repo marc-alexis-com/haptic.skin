@@ -98,7 +98,7 @@ See `docs/architecture.md` for details, or the full research report in
 | `examples/` | Demo scripts (blind nav, music, silent comms) |
 | `tests/` | Unit tests, serial simulator |
 | `research-report/` | Typst deep-research report (French) |
-| `06-scientific-foundations.md`, `hardware-research.md`, … | Research notes |
+| `research/` | Long-form research notes (scientific foundations, hardware, similar projects) |
 
 ## Quick start (once prototype exists)
 
