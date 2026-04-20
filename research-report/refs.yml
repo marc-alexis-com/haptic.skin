@@ -1,0 +1,353 @@
+bhaptics:
+  type: web
+  title: "bHaptics TactSuit Product Line"
+  url: https://www.bhaptics.com/
+  date: 2026
+
+owo:
+  type: web
+  title: "OWO Skin - Haptic Gaming Vest"
+  url: https://owogame.com/
+  date: 2026
+
+teslasuit:
+  type: web
+  title: "Teslasuit - Full-Body VR Suit"
+  url: https://teslasuit.io/
+  date: 2026
+
+woojer:
+  type: web
+  title: "Woojer Vest 4"
+  url: https://www.woojer.com/
+  date: 2026
+
+lofelt:
+  type: web
+  title: "Meta acquires Lofelt for VR/AR haptics"
+  url: https://mixed-news.com/en/meta-buys-berlin-startup-lofelt/
+  date: 2022
+
+google-vhp:
+  type: article
+  title: "An Open-Source Vibrotactile Haptics Platform for On-Body Applications"
+  author:
+    - Schneider, Oliver
+    - Israr, Ali
+    - Poupyrev, Ivan
+  parent:
+    type: proceedings
+    title: "Proceedings of the 34th Annual ACM Symposium on User Interface Software and Technology (UIST '21)"
+  date: 2021
+  url: https://research.google/blog/an-open-source-vibrotactile-haptics-platform/
+
+snaptics:
+  type: web
+  title: "Snaptics - Modular Open-Source Wearable Haptic Platform"
+  url: https://www.snaptics.org/
+  date: 2024
+
+senseshift:
+  type: web
+  title: "SenseShift - Open-Source Haptic Firmware"
+  url: https://github.com/senseshift/senseshift-firmware
+  date: 2025
+
+mit-fifth-sense:
+  type: web
+  title: "MIT CSAIL Fifth Sense - Wearable Haptic Navigation"
+  url: https://projects.csail.mit.edu/bocelli/wha.html
+  date: 2023
+
+ieee-bidirectional:
+  type: article
+  title: "Toward a Wireless Wearable System for Bidirectional Human-Machine Interface"
+  author:
+    - Kim, Hyunwoo
+    - Lee, Seunghwan
+  parent:
+    type: periodical
+    title: "IEEE Sensors Journal"
+  date: 2022
+  url: https://ieeexplore.ieee.org/document/9754564/
+
+nature-rings:
+  type: article
+  title: "Augmented Tactile-Perception and Haptic-Feedback Rings"
+  author:
+    - Sun, Zhong
+    - Zhu, Minglu
+  parent:
+    type: periodical
+    title: "Nature Communications"
+  date: 2022
+  url: https://www.nature.com/articles/s41467-022-32745-8
+
+nature-fullbody:
+  type: article
+  title: "Wearable Interactive Full-Body Motion Tracking and Haptic Feedback Network Systems"
+  author:
+    - Park, Jaehyun
+  parent:
+    type: periodical
+    title: "Nature Communications"
+  date: 2025
+  url: https://www.nature.com/articles/s41467-025-63644-3
+
+van-erp:
+  type: article
+  title: "Waypoint Navigation with a Vibrotactile Waist Belt"
+  author:
+    - Van Erp, Jan B.F.
+    - Van Veen, Hendrik A.H.C.
+    - Jansen, Chris
+    - Dobbins, Trevor
+  parent:
+    type: periodical
+    title: "ACM Transactions on Applied Perception"
+    volume: 2
+    issue: 2
+  date: 2005
+  page-range: 106-117
+
+tactile-brush:
+  type: article
+  title: "Tactile Brush: Drawing on Skin with a Tactile Grid Display"
+  author:
+    - Israr, Ali
+    - Poupyrev, Ivan
+  parent:
+    type: proceedings
+    title: "Proceedings of the SIGCHI Conference on Human Factors (CHI '11)"
+  date: 2011
+
+kaul-neck:
+  type: article
+  title: "Around-the-Neck Haptic Displays"
+  author:
+    - Kaul, Oliver Beren
+    - Rohs, Michael
+  parent:
+    type: proceedings
+    title: "Proceedings of the Tenth International Conference on Tangible, Embedded, and Embodied Interaction (TEI '16)"
+  date: 2016
+
+sunu:
+  type: web
+  title: "Sunu Band - Sonar Navigation for the Visually Impaired"
+  url: https://www.sunu.com/
+  date: 2025
+
+wayband:
+  type: web
+  title: "Wayband - Haptic Navigation by WearWorks"
+  url: https://www.wear.works/wayband
+  date: 2017
+
+navcog:
+  type: web
+  title: "NavCog - Cognitive Navigation Assistance"
+  url: https://www.cs.cmu.edu/~NavCog/
+  date: 2023
+
+jner-haptic:
+  type: article
+  title: "Vibrotactile Feedback for Navigation Assistance of Visually Impaired"
+  parent:
+    type: periodical
+    title: "Journal of NeuroEngineering and Rehabilitation"
+  date: 2020
+  url: https://jneuroengrehab.biomedcentral.com/articles/10.1186/s12984-020-00685-5
+
+feelspace:
+  type: web
+  title: "FeelSpace - naviGürtel Magnetic Sense Belt"
+  url: https://feelspace.de/
+  date: 2025
+
+cyclesense:
+  type: article
+  title: "CycleSense: Haptic Navigation for Cyclists"
+  parent:
+    type: proceedings
+    title: "Proceedings of the 2017 CHI Conference on Human Factors"
+  date: 2017
+  serial-number:
+    doi: "10.1145/3025453.3025983"
+
+not-impossible:
+  type: web
+  title: "Music: Not Impossible - Vibrotactile Music Experience"
+  url: https://www.notimpossible.com/projects/music-not-impossible
+  date: 2023
+
+hapbeat:
+  type: web
+  title: "Hapbeat - Necklace Haptic Device"
+  url: https://hapbeat.com/
+  date: 2024
+
+upright:
+  type: web
+  title: "Upright Go - Posture Correction Trainer"
+  url: https://www.uprightpose.com/
+  date: 2025
+
+breathing-biofeedback:
+  type: article
+  title: "Cardiac Coherence and Vibrotactile Breathing Biofeedback"
+  parent:
+    type: periodical
+    title: "Frontiers in Psychology"
+  date: 2017
+  serial-number:
+    doi: "10.3389/fpsyg.2017.00874"
+
+hocoma:
+  type: web
+  title: "Hocoma Valedo - Rehabilitation with Haptic Feedback"
+  url: https://www.hocoma.com/
+  date: 2025
+
+meta-phonemes:
+  type: article
+  title: "Writing on the Skin: Encoding Text as Vibrotactile Patterns"
+  parent:
+    type: proceedings
+    title: "Proceedings of the 2018 CHI Conference on Human Factors"
+  date: 2018
+  serial-number:
+    doi: "10.1145/3173574.3173602"
+
+elitac:
+  type: web
+  title: "Elitac - Haptic Navigation Belt for Firefighters"
+  url: https://elitac.nl/
+  date: 2025
+
+darpa-tsas:
+  type: article
+  title: "Tactile Situation Awareness System for Helicopter Pilots"
+  parent:
+    type: periodical
+    title: "International Journal of Applied Aviation Studies"
+    volume: 1
+    issue: 1
+  date: 2001
+  serial-number:
+    doi: "10.1207/s15327108ijap1501_7"
+
+grandview:
+  type: web
+  title: "Haptic Technology Market Analysis"
+  url: https://www.grandviewresearch.com/industry-analysis/haptic-technology-market
+  date: 2025
+
+marketsandmarkets:
+  type: web
+  title: "Haptic Technology Market Report"
+  url: https://www.marketsandmarkets.com/Market-Reports/haptic-technology-market-995.html
+  date: 2025
+
+precedence:
+  type: web
+  title: "Haptic Technology Market Size and Forecast"
+  url: https://www.precedenceresearch.com/haptic-technology-market
+  date: 2025
+
+ecologic:
+  type: web
+  title: "Ecologic France - Éco-organisme DEEE"
+  url: https://www.ecologic-france.com/
+  date: 2025
+
+verrillo:
+  type: article
+  title: "Effect of Contactor Area on the Vibrotactile Threshold"
+  author:
+    - Verrillo, Ronald T.
+  parent:
+    type: periodical
+    title: "The Journal of the Acoustical Society of America"
+    volume: 35
+    issue: 12
+  date: 1963
+  page-range: 1962-1966
+
+weinstein:
+  type: chapter
+  title: "Intensive and Extensive Aspects of Tactile Sensitivity as a Function of Body Part, Sex, and Laterality"
+  author:
+    - Weinstein, Sidney
+  parent:
+    type: book
+    title: "The Skin Senses"
+  date: 1968
+  page-range: 195-222
+
+craig:
+  type: article
+  title: "Difference Threshold for Intensity of Tactile Stimuli"
+  author:
+    - Craig, James C.
+  parent:
+    type: periodical
+    title: "Perception & Psychophysics"
+    volume: 11
+    issue: 2
+  date: 1972
+  page-range: 150-152
+
+gescheider:
+  type: book
+  title: "Psychophysics: The Fundamentals"
+  author:
+    - Gescheider, George A.
+  edition: 3
+  publisher: "Psychology Press"
+  date: 2009
+
+cholewiak:
+  type: article
+  title: "Vibrotactile Localization on the Arm: Effects of Place, Space, and Age"
+  author:
+    - Cholewiak, Roger W.
+    - Collins, Amy A.
+  parent:
+    type: periodical
+    title: "Perception & Psychophysics"
+    volume: 65
+    issue: 7
+  date: 2003
+
+nature-ecodesign:
+  type: article
+  title: "Quantifying the Global Eco-Footprint of Wearable Healthcare Electronics"
+  parent:
+    type: periodical
+    title: "Nature"
+  date: 2025
+  url: https://www.nature.com/articles/s41586-025-09819-w
+
+right-to-repair:
+  type: web
+  title: "EU Right to Repair Directive"
+  url: https://www.consilium.europa.eu/en/policies/right-to-repair-products/
+  date: 2024
+
+hackster-bands:
+  type: web
+  title: "Wearable Haptic Bands - Multi-Device Haptic System"
+  url: https://www.hackster.io/IdeaZero/wearable-haptic-bands-12ea4c
+  date: 2024
+
+akl-gesture:
+  type: article
+  title: "Accelerometer-Based Gesture Recognition via Dynamic-Time Warping"
+  author:
+    - Akl, Ahmad
+    - Valaee, Shahrokh
+  parent:
+    type: proceedings
+    title: "2011 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)"
+  date: 2011

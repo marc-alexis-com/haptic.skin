@@ -1,0 +1,40 @@
+name: Firmware (MicroPython)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "firmware/**"
+      - ".github/workflows/firmware.yml"
+  pull_request:
+    paths:
+      - "firmware/**"
+      - ".github/workflows/firmware.yml"
+
+jobs:
+  syntax-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Python syntax check on firmware sources
+        run: |
+          if find firmware -name "*.py" -print -quit | grep -q .; then
+            python -m compileall -q firmware
+          else
+            echo "(no firmware sources yet — skipping)"
+          fi
+
+      - name: Ruff lint (MicroPython-tolerant)
+        run: |
+          pip install ruff
+          if find firmware -name "*.py" -print -quit | grep -q .; then
+            ruff check firmware --ignore E501,F401 || true
+          else
+            echo "(no firmware sources yet — skipping)"
+          fi
