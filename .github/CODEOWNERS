@@ -6,7 +6,11 @@
 #   @AlexisJOLLY       — embedded
 #   @yorgo-haykal      — software
 #   @lilouconstantin   — IT for Finance (market, business, poster, report)
-#   TODO: +1 software, +1 bio-informatics (handles unknown — kick-off April 10)
+#   Lucie Moreau       — software         (GitHub handle TBD)
+#   Pierre Heger       — bio-informatics  (GitHub handle TBD)
+# When Lucie and Pierre share their GitHub handles, add them to
+# /daemon/, /client/, /patterns/, /examples/, /tests/ (Lucie) and to
+# /docs/science/ + /06-scientific-foundations.md (Pierre).
 #
 # NOTE — collaborative model:
 # Branch protection is configured with `require_code_owner_reviews: false`,

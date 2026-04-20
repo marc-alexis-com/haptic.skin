@@ -6,6 +6,8 @@ Source for the documentation site. Stack: **mkdocs-material** (to be set up).
 
 ```
 docs/
+├── scope.md                  # prototype v1 scope + clarifications jury
+├── espaces.md                # 4 ESPACES team organization
 ├── index.md                  # landing
 ├── getting-started.md        # install + first vibration
 ├── architecture.md           # 3 software layers + 2 hardware layers
