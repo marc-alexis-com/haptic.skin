@@ -68,11 +68,17 @@ Recommended defense demo sequence (from report §10):
 
 Broader use cases: spatial notifications, gesture response, accessibility (visually impaired), gaming/VR, silent inter-wearer comms.
 
-## Team Composition (target: 5–6 members)
-- **Marc-Alexis**: project lead, Python architecture, daemon, API, integration.
-- **2× Systèmes embarqués / robotique**: firmware Pico (C/MicroPython), PWM drivers, IMU processing, PCB prototyping.
-- **1× Bioinformatique**: body mapping, motor placement optimization, health/accessibility, scientific state of the art.
-- **1× IT for Finance**: market analysis, business model, project management, poster, report.
+## Team Composition (6 members, assigned April 2026)
+- **Marc-Alexis Manso-Peters** (`@marc-alexis-com`) — embedded + project lead.
+- **Alexis Jolly** (`@AlexisJOLLY`) — embedded (firmware Pico, PCA9685, ULN2803A, MPU6050, PCB).
+- **Yorgo Haykal** (`@yorgo-haykal`) — software (daemon, client lib, IPC, gesture recognition).
+- **Lilou Constantin** (`@lilouconstantin`) — IT for Finance (market, business model, poster, report).
+- *+1 software engineer — TBD.*
+- *+1 bio-informatics — TBD (body mapping, accessibility, scientific state of the art).*
+
+Marc-Alexis and Alexis are symmetric embedded co-workers. Everyone can
+contribute to any area — CODEOWNERS only auto-routes review requests,
+it does not restrict who can push or approve.
 
 ## Key Dates (EFREI Calendar, 2026)
 - **Apr 6–10**: team candidacy period.
