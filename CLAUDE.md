@@ -8,6 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **This is a research & documentation repository, not (yet) a code repository.** The hardware, firmware, and daemon described below are the *target* deliverables; today the repo holds the deep-research dossier that feeds the specifications, the Typst-compiled report, and project-context artifacts (candidature, jury feedback, Notion export). Do not invent source trees (`src/`, `firmware/`, `daemon/`) — they don't exist yet.
 
 ## Repository Layout
+- `website/` — public website at https://haptic.skin. Static files in `website/public/`, auto-deployed to VPS via GitHub Actions on push to `main` (see `.github/workflows/deploy-website.yml`). Served by nginx + Traefik with auto SSL.
 - `research-report/main.typ` — the compiled deep-research report (French, MDPI template via `splendid-mdpi`). ~715 lines, 11 top-level sections (Introduction, État de l'art, Matériel, Logiciel, Cas d'usage, Marché, Fondements scientifiques, Éco-conception, Projets similaires, Recommandations, Conclusion).
 - `research-report/refs.yml` — Hayagriva bibliography consumed by `main.typ`.
 - `research-report/images/` — figures embedded in the report (architecture diagrams, etc.).

@@ -1,0 +1,25 @@
+name: Deploy Website
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'website/**'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy to VPS
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy via rsync
+        uses: burnett01/rsync-deployments@7.0.1
+        with:
+          switches: -avz --delete
+          path: website/public/
+          remote_path: /srv/www/haptic.skin/
+          remote_host: 164.90.182.103
+          remote_user: admin
+          remote_key: ${{ secrets.DEPLOY_SSH_KEY }}
