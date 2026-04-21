@@ -8,7 +8,7 @@ and external contributors.
 1. **Pick an issue** on the [project board](https://github.com/marc-alexis-com/haptic.skin/projects)
    or create one. Assign it to yourself.
 2. **Create a branch** from `main`: `git checkout -b feat/<scope>-<short-title>`.
-   Scopes: `firmware`, `daemon`, `client`, `hardware`, `patterns`, `docs`.
+   Scopes: `firmware`, `daemon`, `client`, `hardware`, `patterns`, `docs`, `website`.
 3. **Commit** using conventional commits:
    - `feat(daemon): pattern engine 200 Hz scheduler`
    - `fix(firmware): I²C retry on NACK`
@@ -44,6 +44,17 @@ ruff check . && ruff format --check .
 - KiCad 8+ required.
 - Open `hardware/necklace/necklace.kicad_pro`.
 - BOM generated via the BOM plugin; committed as `hardware/BOM.csv`.
+
+### Website
+
+The public site at [haptic.skin](https://haptic.skin). No build step for now —
+just edit files in `website/public/` and push to `main`. GitHub Actions deploys
+automatically via rsync.
+
+```bash
+# Preview locally
+open website/public/index.html
+```
 
 ### Research report (Typst)
 

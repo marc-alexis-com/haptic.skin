@@ -96,6 +96,7 @@ See `docs/architecture.md` for details, or the full research report in
 | `hardware/` | KiCad schematics, PCB, BOM, 3D printable enclosures |
 | `docs/` | Developer & user documentation (mkdocs) |
 | `examples/` | Demo scripts (blind nav, music, silent comms) |
+| `website/` | Public website ([haptic.skin](https://haptic.skin)) — auto-deployed on push |
 | `tests/` | Unit tests, serial simulator |
 | `research-report/` | Typst deep-research report (French) |
 | `research/` | Long-form research notes (scientific foundations, hardware, similar projects) |
