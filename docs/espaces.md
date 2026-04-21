@@ -71,7 +71,7 @@ et les milestones. Pour la scope : voir [`scope.md`](scope.md).
 ## 🧬 ESPACE FEUILLE — bio-informatique
 
 **Membre** :
-- Pierre Heger (handle GitHub à venir)
+- [Pierre Heger](https://github.com/hepi1911)
 
 **Dossiers** : `docs/science/`, `research/scientific-foundations.md`,
 sections §6 & §7 de `research-report/main.typ`

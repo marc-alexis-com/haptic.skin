@@ -7,10 +7,9 @@
 #   @yorgo-haykal      — software
 #   @lilouconstantin   — IT for Finance (market, business, poster, report)
 #   Lucie Moreau       — software         (GitHub handle TBD)
-#   Pierre Heger       — bio-informatics  (GitHub handle TBD)
-# When Lucie and Pierre share their GitHub handles, add them to
-# /daemon/, /client/, /patterns/, /examples/, /tests/ (Lucie) and to
-# /docs/science/ + /research/scientific-foundations.md (Pierre).
+#   @hepi1911          — bio-informatics  (Pierre Heger)
+# When Lucie shares her GitHub handle, add her to
+# /daemon/, /client/, /patterns/, /examples/, /tests/.
 #
 # NOTE — collaborative model:
 # Branch protection is configured with `require_code_owner_reviews: false`,
@@ -33,9 +32,8 @@
 /tests/                        @marc-alexis-com @yorgo-haykal
 
 # Bio-informatics (body mapping, perception science, accessibility)
-# Owner TBD — catch-all with Marc for now, update when bio-info teammate joins
-/docs/science/                 @marc-alexis-com
-/research/scientific-foundations.md  @marc-alexis-com
+/docs/science/                 @marc-alexis-com @hepi1911
+/research/scientific-foundations.md  @marc-alexis-com @hepi1911
 
 # Research report + poster + business (market, BOM analysis, SWOT)
 /research-report/              @marc-alexis-com @lilouconstantin

@@ -74,7 +74,7 @@ Broader use cases: spatial notifications, gesture response, accessibility (visua
 - **Alexis Jolly** (`@AlexisJOLLY`) — embedded (firmware Pico, PCA9685, ULN2803A, MPU6050, PCB).
 - **Yorgo Haykal** (`@yorgo-haykal`) — software (daemon, client lib, IPC, gesture recognition).
 - **Lucie Moreau** (handle TBD) — software (daemon, client lib, patterns, integrations).
-- **Pierre Heger** (handle TBD) — bio-informatics (body mapping, accessibility, scientific state of the art).
+- **Pierre Heger** (`@hepi1911`) — bio-informatics (body mapping, accessibility, scientific state of the art).
 - **Lilou Constantin** (`@lilouconstantin`) — IT for Finance (market, business model, poster, report).
 
 Marc-Alexis and Alexis are symmetric embedded co-workers. Everyone can
