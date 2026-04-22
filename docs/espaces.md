@@ -44,7 +44,7 @@ et les milestones. Pour la scope : voir [`scope.md`](scope.md).
 
 **Membres** :
 - [Yorgo Haykal](https://github.com/yorgo-haykal)
-- Lucie Moreau (handle GitHub à venir)
+- [Lucie Moreau](https://github.com/lucie769)
 
 **Dossiers** : `daemon/`, `client/`, `patterns/`, `examples/`, `tests/`
 
