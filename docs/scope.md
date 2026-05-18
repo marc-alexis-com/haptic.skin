@@ -14,7 +14,7 @@ Le prototype minimal à produire :
   Raspberry Pi Pico connecté en USB au PC hôte
 - **Démon Python** asyncio + **API one-liner** + **librairie `haptic-skin`**
   installable via `pip`
-- **3 scénarios de démo** live pour la soutenance (voir §Usages)
+- **1 scénario de démo** live pour la soutenance (voir §Usages) — navigation haptique uniquement
 - **Code + schémas + doc open-source** sur GitHub
 
 ### Ce que le MVP **n'est pas**
@@ -59,23 +59,21 @@ l'open-source est un atout central, pas seulement un choix de licence.
 
 ### 3. Usages
 
-On se concentre sur **un seul usage principal** (livrable #1, issue #28) :
+On livre **un seul usage** (issue #28) :
 
-- 🥇 **Navigation haptique style Google Maps** — l'utilisateur marche dans
-  la rue avec son téléphone (ou un dongle GPS USB), et le collier vibre
-  dans la direction de la prochaine rue à prendre. 8 moteurs = 8 directions
+- 🥇 **Navigation haptique** — l'utilisateur marche, le collier vibre dans
+  la direction de la prochaine rue à prendre. 8 moteurs = 8 directions
   cardinales. Intensité qui croît à l'approche du virage. Mains libres,
-  yeux libres. Démo soutenance en mode *indoor* (trace GPS rejouée,
-  reproductible) avec passerelle vers une démo *outdoor* si fiabilité OK.
-  La variante "yeux bandés / parcours d'obstacles" reste valide comme cas
-  spécifique (issue #15).
+  yeux libres. Deux modes côté code, tranchés selon la fiabilité au
+  mock-defense :
+  - **Indoor** (safe, par défaut) : trace GPS pré-enregistrée rejouée,
+    parcours d'obstacles en intérieur, volontaire optionnellement les
+    yeux bandés. 100 % reproductible.
+  - **Outdoor** (wow) : dongle GPS USB (u-blox NEO-6M) ou téléphone
+    tethered, marche réelle de 150-200 m autour d'EFREI.
 
-Démonstrateurs courts conservés comme `examples/` mais **rétrogradés en
-stretch** (priorité P3-nice, on les fait *si* il reste du temps) :
-
-- **Notifications spatiales silencieuses** avec réponse par geste
-  (issue #16) — montre la bidirectionnalité.
-- **Musique → vibration** (issue #17) — accroche émotionnelle 30 s.
+Pas d'autre démo en v1 (musique, notifications spatiales, communication
+silencieuse, gaming — explicitement écartés, issues #15/#16/#17 closes).
 
 ### 4. Fonctionnement
 

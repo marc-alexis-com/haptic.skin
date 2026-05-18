@@ -51,7 +51,7 @@ Ce rapport synthétise la recherche sur huit axes~: état de l'art, matériel, a
 - *Découverte matérielle critique*~: le PCA9685 ne peut pas piloter directement les moteurs ERM (10~mA max en sortie vs 80--100~mA requis). Des transistors Darlington ULN2803A sont indispensables.
 - Le BOM proposé de \~63~EUR est réalisable avec des composants standards.
 - Un calendrier de 3 mois est serré mais faisable pour un prototype fonctionnel.
-- *Démo principale pour la soutenance*~: navigation haptique style Google Maps --- le collier vibre vers la prochaine rue à prendre pendant que l'utilisateur marche. La variante "yeux bandés / parcours d'obstacles" en est un cas spécifique. Démos secondaires (notifications spatiales, musique-vers-vibration) conservées comme stretch.
+- *Démo unique pour la soutenance*~: navigation haptique --- le collier vibre vers la prochaine direction à prendre pendant que l'utilisateur marche. Mode indoor (trace GPS rejouée, parcours yeux bandés) ou outdoor (GPS USB ou téléphone). Aucune autre démo en v1.
 
 #figure(
   image("images/architecture.png", width: 95%),
@@ -431,9 +431,9 @@ Haute valeur mais plus difficile à démontrer et mieux adapté à une v2 sans f
   caption: [Classement des cas d'usage. Score~: 1~(faible) à 5~(élevé). Pour la simplicité, score élevé = moins complexe.],
 ) <tab-usecases>
 
-*Démo principale pour la soutenance (livrable #1)*~:
+*Démo unique pour la soutenance*~:
 
-*Navigation haptique style Google Maps (4~min)*~: l'utilisateur porte le collier et marche un trajet pré-tracé (mode indoor avec trace GPS rejouée, ou outdoor avec téléphone). Les 8~moteurs du collier mappent les 8~directions cardinales~; l'intensité croît à l'approche du virage. Cas d'usage immédiatement compréhensible par le jury (tout le monde utilise Google Maps), démontre la valeur "mains libres + yeux libres". La variante "yeux bandés sur parcours d'obstacles" en est un cas spécifique conservé pour les tests utilisateur. Démos *Musique-vers-vibration* et *Communication silencieuse* conservées comme stretch (1~min chacune si temps disponible).
+*Navigation haptique (5~min)*~: l'utilisateur porte le collier et marche un trajet pré-tracé (mode indoor avec trace GPS rejouée + yeux bandés, ou outdoor avec GPS USB / téléphone). Les 8~moteurs du collier mappent les 8~directions cardinales~; l'intensité croît à l'approche du virage. Cas d'usage immédiatement compréhensible par le jury, démontre la valeur "mains libres + yeux libres". *Pas d'autre démo*~: on consacre tout le temps de soutenance à raffiner cette démo unique (latence < 200~ms, patterns directionnels validés en test utilisateur, fallback indoor si GPS outdoor échoue) plutôt que de répartir l'effort sur plusieurs démos moyennes.
 
 #colbreak()
 
@@ -662,16 +662,11 @@ Basé sur l'analyse de 15+~projets similaires~:
 
 == Stratégie de Démonstration
 
-Démo principale pour la soutenance du 3~juillet (livrable #1)~:
+Démo unique pour la soutenance du 3~juillet~:
 
-*Navigation haptique style Google Maps (4~min)*~: un volontaire jury porte le collier. Une source GPS (dongle USB u-blox ou téléphone tethered) alimente le démon Python, qui interroge un moteur de routing (OSRM auto-hébergé ou API Mapbox/Google) et déclenche le moteur correspondant à la prochaine direction. Les 8~moteurs du collier mappent les 8~directions cardinales~; l'intensité croît à l'approche du virage (50~m / 20~m / *now*). Mode démo principal~: trace GPS pré-enregistrée rejouée à la vitesse réelle (reproductible à 100\%). Mode bonus~: marche outdoor de 200~m autour d'EFREI si la fiabilité est confirmée au mock-defense.
+*Navigation haptique (5~min)*~: un volontaire jury porte le collier. Une source GPS (dongle USB u-blox ou téléphone tethered) alimente le démon Python, qui interroge un moteur de routing (OSRM auto-hébergé ou API Mapbox/Google) et déclenche le moteur correspondant à la prochaine direction. Les 8~moteurs du collier mappent les 8~directions cardinales~; l'intensité croît à l'approche du virage (50~m / 20~m / *now*). Mode démo principal~: trace GPS pré-enregistrée rejouée à la vitesse réelle, volontaire les yeux bandés sur parcours d'obstacles (reproductible à 100\%). Mode bonus~: marche outdoor de 200~m autour d'EFREI si la fiabilité est confirmée au mock-defense.
 
-Démos secondaires (rétrogradées en stretch, P3-nice)~:
-
-+ *Musique-vers-vibration (1~min)*~: accroche émotionnelle. Python librosa pour l'analyse fréquentielle temps réel.
-+ *Communication silencieuse bidirectionnelle (1~min)*~: profondeur technique. Une personne fait un geste (IMU), l'autre ressent le pattern vibratoire.
-
-Le focus sur une seule démo phare permet de la travailler en profondeur (latence < 200~ms, patterns directionnels validés en test utilisateur, fallback indoor si GPS outdoor échoue) plutôt que de répartir l'effort sur trois démos moyennes.
+*Pas d'autre démo en v1.* Les démos musique-vers-vibration, notifications spatiales et communication silencieuse, initialement envisagées, ont été explicitement écartées (issues #15/#16/#17 closes). On consacre tout le temps disponible à raffiner cette démo unique~: latence < 200~ms, patterns directionnels validés en test utilisateur, fallback indoor si GPS outdoor échoue. Mieux une démo soignée que trois démos moyennes.
 
 == Matrice de Risques
 

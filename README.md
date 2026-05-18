@@ -53,9 +53,9 @@ HAPTIC.SKIN fills that gap:
   API, threshold-based gesture recognition.
 - **Client library**: `pip install haptic-skin`, one-liner API,
   15+ built-in patterns.
-- **Primary live demo**: **haptic street navigation** (Google-Maps style)
-  — the necklace vibrates toward the next turn while you walk. Secondary
-  demos kept as `examples/` (silent notifications, music-to-vibration).
+- **Single live demo**: **haptic navigation** — the necklace vibrates toward
+  the next turn while you walk. No other demos in v1 (the music / silent
+  notifications scenarios are explicitly out of scope).
 
 ### Explicitly out of scope for v1
 
