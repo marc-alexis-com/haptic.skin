@@ -51,7 +51,7 @@ Ce rapport synthétise la recherche sur huit axes~: état de l'art, matériel, a
 - *Découverte matérielle critique*~: le PCA9685 ne peut pas piloter directement les moteurs ERM (10~mA max en sortie vs 80--100~mA requis). Des transistors Darlington ULN2803A sont indispensables.
 - Le BOM proposé de \~63~EUR est réalisable avec des composants standards.
 - Un calendrier de 3 mois est serré mais faisable pour un prototype fonctionnel.
-- *Séquence de démo recommandée* pour la soutenance~: (1)~musique-vers-vibration, (2)~navigation à l'aveugle, (3)~communication silencieuse bidirectionnelle.
+- *Démo principale pour la soutenance*~: navigation haptique style Google Maps --- le collier vibre vers la prochaine rue à prendre pendant que l'utilisateur marche. La variante "yeux bandés / parcours d'obstacles" en est un cas spécifique. Démos secondaires (notifications spatiales, musique-vers-vibration) conservées comme stretch.
 
 #figure(
   image("images/architecture.png", width: 95%),
@@ -154,13 +154,13 @@ Plusieurs projets haptiques open-source existent, mais aucun ne combine format p
     [Bus I2C], [2], [2], [2], [2], [3],
     [WiFi/BT], [Non], [Oui], [Oui], [Oui], [Non],
     [USB natif], [Oui], [Oui], [Via UART], [Oui], [Via UART],
-    [MicroPython], [Excellent], [Excellent], [Bon], [Bon], [Limité],
+    [Support Rust embedded], [Excellent (`embassy-rp`)], [Excellent (`embassy-rp`)], [Bon (`esp-hal`)], [Bon (`embassy-stm32`)], [Limité],
     [Consommation], [\~25~mA], [\~40~mA], [\~80~mA], [\~80~mA], [\~50~mA],
   ),
-  caption: [Comparaison des microcontrôleurs. Le Raspberry Pi Pico offre le meilleur compromis coût/USB/I2C/MicroPython.],
+  caption: [Comparaison des microcontrôleurs. Le Raspberry Pi Pico offre le meilleur compromis coût/USB/I2C/écosystème Rust embedded.],
 )
 
-*Recommandation*~: Raspberry Pi Pico (sans WiFi) pour v1. USB natif, deux bus I2C (un pour PCA9685, un pour IMUs), excellent support MicroPython, coût le plus bas. ESP32-S3 comme voie d'évolution pour une v2 sans fil.
+*Recommandation*~: Raspberry Pi Pico (sans WiFi) pour v1. USB natif, deux bus I2C (un pour PCA9685, un pour IMUs), coût le plus bas. *Firmware en Rust + Embassy* (async, type-safe, écosystème `embassy-rp` mature) plutôt que MicroPython, pour la prédictibilité de timing nécessaire à la cible de latence < 200~ms de la démo navigation. ESP32-S3 comme voie d'évolution pour une v2 sans fil.
 
 == Comparaison des Technologies d'Actionneurs
 
@@ -271,7 +271,7 @@ Un prototype fonctionnel est réalisable en 3~mois, mais *pas la vision complèt
 
 Stack en trois couches~:
 
-*Firmware (Pico, MicroPython)*~: Reçoit des commandes série binaires, pilote les sorties PWM PCA9685 via ULN2803A, lit les données IMU MPU6050, envoie les événements gestuels en amont. Protocole binaire avec octets de tramage (`0xAA` descendant, `0xBB` montant) et checksum XOR.
+*Firmware (Pico, Rust + Embassy)*~: Reçoit des commandes série binaires, pilote les sorties PWM PCA9685 via ULN2803A, lit les données IMU MPU6050, envoie les événements gestuels en amont. Protocole binaire avec octets de tramage (`0xAA` descendant, `0xBB` montant) et checksum XOR. L'executor asynchrone d'Embassy permet d'exécuter en parallèle la boucle de pattern (200~Hz), l'échantillonnage IMU et le service série sur un seul cœur, sans GC ni RTOS.
 
 *Démon (PC hôte, Python~3 asyncio)*~: Architecture mono-processus asynchrone. Gère la communication série via `pyserial`/`aioserial`, le séquençage des patterns à 200~Hz, le traitement des événements gestuels et l'exposition de l'API. File de priorité `asyncio.PriorityQueue` pour l'ordonnancement des commandes moteur.
 
@@ -431,10 +431,9 @@ Haute valeur mais plus difficile à démontrer et mieux adapté à une v2 sans f
   caption: [Classement des cas d'usage. Score~: 1~(faible) à 5~(élevé). Pour la simplicité, score élevé = moins complexe.],
 ) <tab-usecases>
 
-*Séquence de 3~démos recommandée pour la soutenance (5~min)*~:
-+ *Musique-vers-vibration (30~s)*~: Accroche émotionnelle --- un membre du jury porte le collier et ressent une chanson.
-+ *Navigation à l'aveugle (2~min)*~: Interactif --- un volontaire les yeux bandés est guidé à travers un parcours d'obstacles.
-+ *Communication silencieuse (2~min)*~: Profondeur technique --- deux personnes communiquent par gestes et vibrations.
+*Démo principale pour la soutenance (livrable #1)*~:
+
+*Navigation haptique style Google Maps (4~min)*~: l'utilisateur porte le collier et marche un trajet pré-tracé (mode indoor avec trace GPS rejouée, ou outdoor avec téléphone). Les 8~moteurs du collier mappent les 8~directions cardinales~; l'intensité croît à l'approche du virage. Cas d'usage immédiatement compréhensible par le jury (tout le monde utilise Google Maps), démontre la valeur "mains libres + yeux libres". La variante "yeux bandés sur parcours d'obstacles" en est un cas spécifique conservé pour les tests utilisateur. Démos *Musique-vers-vibration* et *Communication silencieuse* conservées comme stretch (1~min chacune si temps disponible).
 
 #colbreak()
 
@@ -639,7 +638,7 @@ Basé sur l'analyse de 15+~projets similaires~:
   caption: [Planning Gantt du projet sur 13~semaines. Les jalons obligatoires (Challenge Me~1 et 2, Soutenance) sont marqués en rouge.],
 ) <fig-timeline>
 
-*Réduction de scope si retard*~: Descendre à 1~collier + 1~bracelet (12~moteurs), garder uniquement les gestes lever/secouer, se concentrer sur une seule démo soignée (navigation à l'aveugle).
+*Réduction de scope si retard*~: Descendre à 1~collier + 1~bracelet (12~moteurs), garder uniquement les gestes lever/secouer, se concentrer sur la seule démo principale (navigation haptique style Google Maps, en mode indoor avec trace GPS rejouée pour reproductibilité).
 
 *Première action critique*~: Commander les composants immédiatement et prototyper le circuit PCA9685~+~ULN2803A~+~moteur. C'est l'élément matériel à plus haut risque.
 
@@ -651,7 +650,7 @@ Basé sur l'analyse de 15+~projets similaires~:
 
 == Direction Technique Recommandée
 
-- *MCU*~: Raspberry Pi Pico, firmware MicroPython
+- *MCU*~: Raspberry Pi Pico, firmware *Rust + Embassy* (executor async, `embassy-rp` HAL)
 - *Actionneurs*~: 16× moteurs ERM coin (10~mm)
 - *Driver PWM*~: PCA9685 + 2× ULN2803A + 16× diodes 1N4148
 - *IMU*~: 2× MPU6050 (breakout GY-521)
@@ -663,13 +662,16 @@ Basé sur l'analyse de 15+~projets similaires~:
 
 == Stratégie de Démonstration
 
-Séquence de 3~démos pour la soutenance du 3~juillet (5~min total)~:
+Démo principale pour la soutenance du 3~juillet (livrable #1)~:
 
-+ *Musique-vers-vibration (30~s)*~: Accroche émotionnelle. Un membre du jury porte le collier et ressent une chanson. Python librosa pour l'analyse fréquentielle temps réel.
-+ *Navigation à l'aveugle (2~min)*~: Interactif. Un volontaire les yeux bandés est guidé à travers un parcours d'obstacles en utilisant uniquement les vibrations du collier. Contrôle Wizard-of-Oz via clavier ou GPS connecté au téléphone.
-+ *Communication silencieuse bidirectionnelle (2~min)*~: Profondeur technique. Deux personnes~: l'une fait un geste (détecté par IMU), l'autre ressent le pattern vibratoire. Démontre la plateforme complète.
+*Navigation haptique style Google Maps (4~min)*~: un volontaire jury porte le collier. Une source GPS (dongle USB u-blox ou téléphone tethered) alimente le démon Python, qui interroge un moteur de routing (OSRM auto-hébergé ou API Mapbox/Google) et déclenche le moteur correspondant à la prochaine direction. Les 8~moteurs du collier mappent les 8~directions cardinales~; l'intensité croît à l'approche du virage (50~m / 20~m / *now*). Mode démo principal~: trace GPS pré-enregistrée rejouée à la vitesse réelle (reproductible à 100\%). Mode bonus~: marche outdoor de 200~m autour d'EFREI si la fiabilité est confirmée au mock-defense.
 
-Progression~: réception passive → interaction active → communication bidirectionnelle complète. Chaque démo ajoute de la complexité et démontre une nouvelle capacité.
+Démos secondaires (rétrogradées en stretch, P3-nice)~:
+
++ *Musique-vers-vibration (1~min)*~: accroche émotionnelle. Python librosa pour l'analyse fréquentielle temps réel.
++ *Communication silencieuse bidirectionnelle (1~min)*~: profondeur technique. Une personne fait un geste (IMU), l'autre ressent le pattern vibratoire.
+
+Le focus sur une seule démo phare permet de la travailler en profondeur (latence < 200~ms, patterns directionnels validés en test utilisateur, fallback indoor si GPS outdoor échoue) plutôt que de répartir l'effort sur trois démos moyennes.
 
 == Matrice de Risques
 

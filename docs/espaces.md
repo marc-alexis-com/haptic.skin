@@ -20,7 +20,7 @@ et les milestones. Pour la scope : voir [`scope.md`](scope.md).
 ### Missions
 
 - **Assemblage électronique** : breadboard → perfboard → éventuel PCB JLCPCB
-- **Firmware MicroPython / C** sur Raspberry Pi Pico
+- **Firmware Rust + Embassy** sur Raspberry Pi Pico (MicroPython explicitement écarté, voir #5)
 - **Driver PCA9685** (PWM I²C) avec fade in/out et garde-fou conso
 - **Driver MPU6050** (2× capteurs sur un bus I²C, activation DMP)
 - **Protocole série binaire** (framing 0xAA/0xBB + XOR, baud 921 600)
@@ -58,8 +58,9 @@ et les milestones. Pour la scope : voir [`scope.md`](scope.md).
 - **Moteur de patterns** : parser JSON timeline, scheduler 200 Hz,
   composition `max()`
 - **Reconnaissance gestuelle** par seuils (Phase 1 MVP)
-- **Intégrations** avec des apps externes — exemple : **Google Maps**
-  → navigation haptique (issue #28)
+- **Intégrations** avec des apps externes — **livrable #1 = navigation
+  haptique style Google Maps** (issue #28, P0-blocking) : ingestion GPS,
+  routing, mapping 8 directions → 8 moteurs du collier
 - **Simulateur série** pour développer sans Pico plugué
 
 ### Issues principales
@@ -113,9 +114,10 @@ poster, planning
   Sponsoring ? SWOT complet dans §5 du rapport
 - **Gestion projet** : maintenir Monday, planning Gantt sur 10 semaines,
   suivi des 3 Challenge Me, risk register
-- **Budget** : suivi achats (cible 63 € BOM, marge 37 € pour itération),
-  devis AliExpress / Mouser, **commandes en semaine 1** (2–3 semaines de
-  livraison = chemin critique — coordonner avec ESPACE ROBOTNICS)
+- **Budget** : suivi achats (**150 € validés**, BOM révisée ~103 €, marge
+  ~47 €), devis AliExpress / Mouser, **commandes en semaine 1** (stratégie
+  EU rapide + AliExpress volume — voir comment du 2026-05-18 sur l'issue
+  #1) — coordonner avec ESPACE ROBOTNICS
 - **Poster** (deadline 6 juillet) — draft v1, itérations, impression A0
 - **Coordination rapport final** en Typst + répétitions de la soutenance
 
@@ -123,8 +125,6 @@ poster, planning
 
 - [#20 §5 analyse marché + business model](../../issues/20)
 - [#21 Draft v1 du poster](../../issues/21)
-- [#24 Qui paye la commande AliExpress ?](../../issues/24) — à résoudre
-  en tout premier
 
 ---
 

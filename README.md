@@ -47,14 +47,15 @@ HAPTIC.SKIN fills that gap:
 
 - **Hardware**: 1 necklace (8 ERM motors) + 1 bracelet (4 motors + MPU6050 IMU),
   USB-powered, driven by a Raspberry Pi Pico.
-- **Firmware**: MicroPython on the Pico, PCA9685 + ULN2803A chain to drive
+- **Firmware**: **Rust + Embassy** on the Pico, PCA9685 + ULN2803A chain to drive
   the motors, binary serial protocol.
 - **Daemon**: Python asyncio, pattern sequencer at 200 Hz, local Unix socket
   API, threshold-based gesture recognition.
 - **Client library**: `pip install haptic-skin`, one-liner API,
   15+ built-in patterns.
-- **Three live demo scenarios**: blind navigation, silent spatial
-  notifications, music-to-vibration.
+- **Primary live demo**: **haptic street navigation** (Google-Maps style)
+  — the necklace vibrates toward the next turn while you walk. Secondary
+  demos kept as `examples/` (silent notifications, music-to-vibration).
 
 ### Explicitly out of scope for v1
 
@@ -75,9 +76,9 @@ rationale.
 │  • Gesture events upstream                  │
 │  • IPC: Unix socket + WebSocket + REST      │
 ├─────────────────────────────────────────────┤
-│ Firmware (Raspberry Pi Pico, MicroPython)   │
+│ Firmware (Raspberry Pi Pico, Rust + Embassy)│
 │  • PCA9685 → ULN2803A → 16× ERM motors      │
-│  • MPU6050 IMU (I²C, DMP)                   │
+│  • MPU6050 IMU (I²C async)                  │
 │  • Binary serial protocol                   │
 └─────────────────────────────────────────────┘
 ```
@@ -89,7 +90,7 @@ See `docs/architecture.md` for details, or the full research report in
 
 | Path | Content |
 |---|---|
-| `firmware/` | MicroPython code for the Raspberry Pi Pico |
+| `firmware/` | Rust + Embassy code for the Raspberry Pi Pico |
 | `daemon/` | Python asyncio daemon (pattern engine, IPC) |
 | `client/` | `haptic-skin` Python package (pip-installable) |
 | `patterns/` | JSON library of haptic patterns |

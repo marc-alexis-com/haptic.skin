@@ -29,15 +29,24 @@ pytest
 ruff check . && ruff format --check .
 ```
 
-### Firmware (MicroPython on Raspberry Pi Pico)
+### Firmware (Rust + Embassy on Raspberry Pi Pico)
 
-1. Flash MicroPython on the Pico (drag the `.uf2` while holding BOOTSEL).
-2. Use Thonny or `mpremote` to push files:
+1. Install the cross-compile target:
    ```bash
-   mpremote connect auto cp -r firmware/ :
-   mpremote reset
+   rustup target add thumbv6m-none-eabi
    ```
-3. A serial simulator lives in `tests/serial_sim.py` for dev without hardware.
+2. Install a flasher (pick one):
+   ```bash
+   cargo install elf2uf2-rs            # drag-and-drop UF2 via BOOTSEL
+   # or
+   cargo install probe-rs --features cli  # SWD debug + RTT logs
+   ```
+3. Build and flash:
+   ```bash
+   cd firmware/
+   cargo run --release
+   ```
+4. A serial simulator lives in `tests/serial_sim.py` for daemon dev without hardware.
 
 ### Hardware (KiCad)
 
@@ -68,8 +77,10 @@ typst compile main.typ # one-shot
 
 - **Python**: `ruff` (configured in `pyproject.toml`), type hints encouraged,
   docstrings on public API.
-- **MicroPython**: Keep it readable, avoid heap allocations in hot loops,
-  prefer `const()` for magic numbers.
+- **Rust (firmware)**: `cargo fmt` + `cargo clippy --release -- -D warnings`.
+  Avoid heap allocations in hot loops (we're `#![no_std]`, no allocator by
+  default). Prefer `const` and `#[inline]` where it matters. Use `defmt` for
+  logs (zero-cost when disabled).
 - **Commits**: Conventional commits lite (see above).
 - **No secrets** in commits — use `.env` (gitignored) for API keys.
 

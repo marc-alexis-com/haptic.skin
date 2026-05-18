@@ -59,19 +59,23 @@ l'open-source est un atout central, pas seulement un choix de licence.
 
 ### 3. Usages
 
-On se concentre sur **un seul usage principal** :
+On se concentre sur **un seul usage principal** (livrable #1, issue #28) :
 
-- 🥇 **Guidage directionnel sans la vue** — un volontaire yeux bandés est
-  guidé dans un parcours d'obstacles par le collier (8 moteurs = 8
-  directions cardinales).
+- 🥇 **Navigation haptique style Google Maps** — l'utilisateur marche dans
+  la rue avec son téléphone (ou un dongle GPS USB), et le collier vibre
+  dans la direction de la prochaine rue à prendre. 8 moteurs = 8 directions
+  cardinales. Intensité qui croît à l'approche du virage. Mains libres,
+  yeux libres. Démo soutenance en mode *indoor* (trace GPS rejouée,
+  reproductible) avec passerelle vers une démo *outdoor* si fiabilité OK.
+  La variante "yeux bandés / parcours d'obstacles" reste valide comme cas
+  spécifique (issue #15).
 
-Complété par **deux démonstrateurs courts** :
+Démonstrateurs courts conservés comme `examples/` mais **rétrogradés en
+stretch** (priorité P3-nice, on les fait *si* il reste du temps) :
 
-- 🥈 **Notifications spatiales silencieuses** avec réponse par geste
-  (vibration à gauche = famille, à droite = travail ; geste lever-la-main =
-  décrocher, secouer = refuser). Démontre la **bidirectionnalité**.
-- 🥉 **Musique → vibration** (accroche émotionnelle : le jury ressent une
-  chanson sur son corps, 30 s).
+- **Notifications spatiales silencieuses** avec réponse par geste
+  (issue #16) — montre la bidirectionnalité.
+- **Musique → vibration** (issue #17) — accroche émotionnelle 30 s.
 
 ### 4. Fonctionnement
 
@@ -107,12 +111,16 @@ programme utilisateur. Latence totale < 20 ms.
 
 ## Questions ouvertes
 
-Ce sont des blocages concrets à lever en semaine 1 — suivis comme des
-issues GitHub :
+Issues GitHub actives :
 
-- [#23 Comment accéder au fab lab ?](../../issues/23)
-- [#24 Qui paye la commande AliExpress ?](../../issues/24)
 - [#25 Rôle + attentes du mentor Olivier Girinsky](../../issues/25)
+- Source GPS pour la démo navigation (#28) : dongle u-blox USB **ou**
+  téléphone tethered **ou** trace rejouée
+- Moteur de routing pour #28 : OSRM auto-hébergé **ou** Mapbox Directions
+  API **ou** Google Directions API
+
+Résolus : [#23 accès fab lab](../../issues/23) ✅ ·
+[#24 budget 150 € validé](../../issues/24) ✅
 
 ## Pour aller plus loin
 
