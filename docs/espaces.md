@@ -82,24 +82,23 @@ Résumé :
 **Membre** :
 - [Pierre Heger](https://github.com/hepi1911)
 
-**Dossiers** : `docs/science/`, `research/scientific-foundations.md`,
-sections §6 & §7 de `research-report/main.typ`
+**Dossiers** : `research/scientific-foundations.md`
 
 ### Missions — Pierre doit brainstormer + sourcer
 
 - **Seuils de sensation** — quelle amplitude / fréquence vibratoire est
-  perceptible sans être désagréable, par zone du corps
-- **Positionnement et puissance des actionneurs** — où placer les 16
-  moteurs sur le cou et les poignets pour maximiser la résolution spatiale
-  perçue (densité Pacinian, two-point discrimination)
-- **Rôle et actions possibles de l'outil** — *exploration* : vibrations
-  seules, ou aussi **lumières** (LED) ? thermique ? EMS ? (décision v1 à
-  valider)
-- **State of the art scientifique** — finaliser `research/scientific-foundations.md`
-  et §6 du rapport. Sourcer Bolanowski (1988), Van Erp (2005),
-  Israr-Poupyrev (2011 — "Tactile Brush"), etc.
-- **Protocole test utilisateur** pour le cas d'usage navigation aveugle
-  (5–10 volontaires, parcours d'obstacles, métriques, consentement éclairé)
+  perceptible sans être désagréable, sur le cou
+- **Positionnement des actionneurs** — où placer les 8 moteurs autour du
+  cou pour maximiser la résolution spatiale perçue (densité Pacinian,
+  two-point discrimination)
+- **State of the art scientifique** — finaliser `research/scientific-foundations.md`.
+  Sourcer Bolanowski (1988), Van Erp (2005), Israr-Poupyrev (2011 —
+  "Tactile Brush"), etc.
+- **Patterns directionnels** — différencier "tourne ici" vs "prépare-toi à
+  tourner" sans saturer le porteur. Test avec ROBOTNICS dès que le collier
+  est physique.
+- **Protocole test utilisateur** pour la démo navigation (5–10
+  volontaires, parcours indoor, métriques, consentement éclairé)
 
 ### Issues principales
 
@@ -113,21 +112,20 @@ sections §6 & §7 de `research-report/main.typ`
 **Membre** :
 - [Lilou Constantin](https://github.com/lilouconstantin)
 
-**Dossiers** : `research-report/` (§5 marché, §10 recommandations),
-poster, planning
+**Dossiers** : `research/` (notes marché à créer), poster, planning
 
 ### Missions
 
 - **Business model** : open-source + kit BOM à vendre ? SaaS patterns ?
-  Sponsoring ? SWOT complet dans §5 du rapport
+  Sponsoring ? SWOT à rédiger comme note dans `research/market.md`
 - **Gestion projet** : maintenir Monday, planning Gantt sur 10 semaines,
   suivi des 3 Challenge Me, risk register
-- **Budget** : suivi achats (**150 € validés**, BOM révisée ~103 €, marge
-  ~47 €), devis AliExpress / Mouser, **commandes en semaine 1** (stratégie
-  EU rapide + AliExpress volume — voir comment du 2026-05-18 sur l'issue
-  #1) — coordonner avec ESPACE ROBOTNICS
+- **Budget** : suivi achats (**150 € validés**, BOM 87 €, buffer 63 €),
+  devis Welectron / Mouser / AliExpress, **commandes en semaine 1**
+  (stratégie 4 commandes — voir `hardware/BOM.md`) — coordonner avec
+  ESPACE ROBOTNICS
 - **Poster** (deadline 6 juillet) — draft v1, itérations, impression A0
-- **Coordination rapport final** en Typst + répétitions de la soutenance
+- **Répétitions de la soutenance**
 
 ### Issues principales
 

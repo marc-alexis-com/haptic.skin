@@ -34,7 +34,7 @@ Le prototype minimal à produire :
    `pip install haptic-skin`.
 3. **Collier + bracelets fonctionnant ensemble** — pas juste un des deux,
    les trois wearables communiquent en même temps.
-4. **Poster final** — deadline 6 juillet 2026 (milestone *Rapport + poster*).
+4. **Poster final** — deadline 6 juillet 2026.
 
 ## Clarifications pour le jury
 
@@ -121,7 +121,8 @@ Résolus : [#23 accès fab lab](../../issues/23) ✅ ·
 ## Pour aller plus loin
 
 - [`espaces.md`](espaces.md) — organisation en 4 ESPACES (qui fait quoi)
-- [`../research-report/main.typ`](../research-report/main.typ) — rapport
-  de recherche approfondi (715 lignes, 11 sections)
+- [`software-spec.md`](software-spec.md) — détail module par module côté software
+- [`../hardware/BOM.md`](../hardware/BOM.md) — BOM finale + plan de commande
+- [`../hardware/README.md`](../hardware/README.md) — description en détail de l'objet
 - [`../research/hardware.md`](../research/hardware.md) — analyse matérielle détaillée
 - [`../research/scientific-foundations.md`](../research/scientific-foundations.md) — fondements scientifiques

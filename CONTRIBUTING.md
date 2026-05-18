@@ -65,14 +65,6 @@ automatically via rsync.
 open website/public/index.html
 ```
 
-### Research report (Typst)
-
-```bash
-cd research-report/
-typst watch main.typ   # live rebuild
-typst compile main.typ # one-shot
-```
-
 ## Code style
 
 - **Python**: `ruff` (configured in `pyproject.toml`), type hints encouraged,

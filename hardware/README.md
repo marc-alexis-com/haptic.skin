@@ -187,8 +187,7 @@ Décomposition :
 - **Heading source** : GPS course-over-ground (NMEA RMC), not IMU. Works
   when user is moving (which is the demo case). When stopped at a
   waypoint, the last known COG is held.
-- See `../research/hardware.md` and `../research-report/main.typ` §3 for
-  the full rationale.
+- See `../research/hardware.md` for the full rationale.
 
 ## Layout
 

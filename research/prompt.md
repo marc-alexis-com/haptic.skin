@@ -1,6 +1,10 @@
 # MEGA-PROMPT: Deep Research for HAPTIC.SKIN Project
 
-Read the CLAUDE.md in this directory for full project context. Then execute the following research plan by launching **all agents in parallel**. Each agent explores a different axis. Once all agents return, compile everything into a single structured Markdown document (`research-report.md`) ready for PDF export via pandoc.
+> Historical artifact — the prompt that orchestrated the original
+> deep-research phase. Output was distilled into the `research/*.md`
+> notes alongside this file.
+
+Read the CLAUDE.md in this directory for full project context. Then execute the following research plan by launching **all agents in parallel**. Each agent explores a different axis. Once all agents return, compile everything into a single structured Markdown document.
 
 ---
 
@@ -95,7 +99,7 @@ Search for:
 
 ## OUTPUT FORMAT
 
-Compile ALL findings into `research-report.md` with this structure:
+Compile ALL findings into a structured Markdown document with this layout:
 
 ```markdown
 ---
@@ -178,4 +182,4 @@ numbersections: true
 (all URLs, papers, products cited)
 ```
 
-Make sure every claim has a source URL. Use tables for comparisons. Be factual, not speculative. If something is uncertain, say so. The document should be directly convertible to PDF with `pandoc research-report.md -o research-report.pdf --pdf-engine=xelatex`.
+Make sure every claim has a source URL. Use tables for comparisons. Be factual, not speculative. If something is uncertain, say so.

@@ -59,9 +59,9 @@ HAPTIC.SKIN fills that gap:
 
 ### Explicitly out of scope for v1
 
-Not a medical device, not a consumer product, no wireless, no ML gesture
-classification, no custom PCB — see `research-report/` for the full scoping
-rationale.
+Not a medical device, not a consumer product, no wireless, no bracelets,
+no IMU, no gesture recognition, no music or notification demo — see
+`docs/scope.md` for the full rationale.
 
 ## Architecture
 
@@ -82,8 +82,7 @@ rationale.
 └─────────────────────────────────────────────┘
 ```
 
-See `docs/architecture.md` for details, or the full research report in
-`research-report/`.
+See `docs/scope.md` and `hardware/README.md` for the v1 spec.
 
 ## Repository layout
 
@@ -98,7 +97,6 @@ See `docs/architecture.md` for details, or the full research report in
 | `examples/` | Demo scripts (blind nav, music, silent comms) |
 | `website/` | Public website ([haptic.skin](https://haptic.skin)) — auto-deployed on push |
 | `tests/` | Unit tests, serial simulator |
-| `research-report/` | Typst deep-research report (French) |
 | `research/` | Long-form research notes (scientific foundations, hardware, similar projects) |
 
 ## Quick start (once prototype exists)
@@ -129,7 +127,7 @@ point for external contributors.
 
 - **Code** (`firmware/`, `daemon/`, `client/`, `patterns/`, `examples/`, `tests/`) — MIT (`LICENSE`)
 - **Hardware** (`hardware/` — schematics, PCB, 3D models, BOM) — CERN-OHL-P v2 (`LICENSE-HARDWARE`)
-- **Documentation** (`docs/`, `research-report/`, research markdown files, README) — CC-BY-SA 4.0 (`LICENSE-DOCS`)
+- **Documentation** (`docs/`, research markdown files, README) — CC-BY-SA 4.0 (`LICENSE-DOCS`)
 
 ## Team
 

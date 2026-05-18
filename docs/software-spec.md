@@ -10,7 +10,7 @@
 | **🔧 ROBOTNICS** | Marc-Alexis, Alexis | Rust + Embassy | Firmware Pico, hardware, assemblage |
 | **💻 BOUFFEUR DE CODE** | Yorgo, Lucie | Python | Daemon, GPS, routing, navigation controller, CLI |
 | **🧬 FEUILLE** | Pierre | — | Patterns directionnels, protocole test utilisateur |
-| **💰 MONEYMAKER** | Lilou | — | Marché, poster, rapport, planning |
+| **💰 MONEYMAKER** | Lilou | — | Marché, poster, planning |
 
 L'interface entre ROBOTNICS et BOUFFEUR DE CODE = **le protocole série
 binaire** (issue #8). C'est le point de contact à verrouiller en
