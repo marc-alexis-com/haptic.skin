@@ -1,7 +1,7 @@
 # HAPTIC.SKIN
 
-> Open-source bidirectional haptic wearable platform.
-> One necklace + two bracelets, 16 vibration motors, gesture input, < 100 € BOM.
+> Open-source haptic navigation wearable.
+> One necklace, 8 vibration motors, GPS-driven directional guidance, < 150 € BOM.
 
 ![status](https://img.shields.io/badge/status-prototype_in_progress-orange)
 ![license](https://img.shields.io/badge/code-MIT-blue)
@@ -45,8 +45,8 @@ HAPTIC.SKIN fills that gap:
 
 ## What's in the prototype (v1, July 2026)
 
-- **Hardware**: 1 necklace (8 ERM motors) + 1 bracelet (4 motors + MPU6050 IMU),
-  USB-powered, driven by a Raspberry Pi Pico.
+- **Hardware**: 1 necklace (8 ERM motors mapping 8 cardinal directions),
+  USB-powered, driven by a Raspberry Pi Pico. No bracelets, no IMU in v1.
 - **Firmware**: **Rust + Embassy** on the Pico, PCA9685 + ULN2803A chain to drive
   the motors, binary serial protocol.
 - **Daemon**: Python asyncio, pattern sequencer at 200 Hz, local Unix socket
@@ -77,9 +77,8 @@ rationale.
 │  • IPC: Unix socket + WebSocket + REST      │
 ├─────────────────────────────────────────────┤
 │ Firmware (Raspberry Pi Pico, Rust + Embassy)│
-│  • PCA9685 → ULN2803A → 16× ERM motors      │
-│  • MPU6050 IMU (I²C async)                  │
-│  • Binary serial protocol                   │
+│  • PCA9685 → ULN2803A → 8× ERM motors       │
+│  • USB CDC-ACM binary serial protocol       │
 └─────────────────────────────────────────────┘
 ```
 

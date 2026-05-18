@@ -650,15 +650,17 @@ Basé sur l'analyse de 15+~projets similaires~:
 
 == Direction Technique Recommandée
 
-- *MCU*~: Raspberry Pi Pico, firmware *Rust + Embassy* (executor async, `embassy-rp` HAL)
-- *Actionneurs*~: 16× moteurs ERM coin (10~mm)
-- *Driver PWM*~: PCA9685 + 2× ULN2803A + 16× diodes 1N4148
-- *IMU*~: 2× MPU6050 (breakout GY-521)
-- *Communication*~: USB série (Pico vers PC), pyserial-asyncio côté hôte
-- *Démon*~: Python~3 asyncio, IPC socket Unix + WebSocket/REST optionnel
-- *Format de patterns*~: JSON timeline avec keyframes par moteur
-- *Boîtier*~: Supports 3D imprimés PLA/PETG + bandes tissu/néoprène
-- *BOM total*~: \~63~EUR
+*Scope v1 final (décision 2026-05-18)*~: collier seul 8 moteurs, USB-tethered, pas de bracelets, pas d'IMU. Démo unique~: navigation haptique.
+
+- *MCU*~: Raspberry Pi Pico H, firmware *Rust + Embassy* (executor async, `embassy-rp` HAL)
+- *Actionneurs*~: 8× moteurs ERM coin (10~mm) sur le collier
+- *Driver PWM*~: PCA9685 + 1× ULN2803A (8 canaux suffisent)
+- *Source de heading*~: GPS course-over-ground (NMEA RMC, dongle u-blox NEO-6M USB) --- pas d'IMU
+- *Communication*~: USB CDC-ACM (Pico vers PC), `pyserial-asyncio` côté hôte
+- *Démon*~: Python~3 asyncio, modules `serial_client`, `gps`, `routing`, `nav`, `patterns`, `cli`
+- *Format de patterns*~: 6 patterns nav directionnels (silent, preview, approach, now, arrived, off-route)
+- *Boîtier*~: Pods TPU 3D-imprimés sur bande néoprène + controller box PLA clip ceinture
+- *BOM total*~: ~87~EUR de composants + buffer = budget 150~EUR (voir `hardware/BOM.md`)
 
 == Stratégie de Démonstration
 

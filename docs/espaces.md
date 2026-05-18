@@ -17,15 +17,17 @@ et les milestones. Pour la scope : voir [`scope.md`](scope.md).
 
 **Dossiers** : `firmware/`, `hardware/`, `research/hardware.md`
 
-### Missions
+### Missions (v1 — collier seul, pas de bracelets ni d'IMU)
 
-- **Assemblage électronique** : breadboard → perfboard → éventuel PCB JLCPCB
-- **Firmware Rust + Embassy** sur Raspberry Pi Pico (MicroPython explicitement écarté, voir #5)
-- **Driver PCA9685** (PWM I²C) avec fade in/out et garde-fou conso
-- **Driver MPU6050** (2× capteurs sur un bus I²C, activation DMP)
-- **Protocole série binaire** (framing 0xAA/0xBB + XOR, baud 921 600)
-- **Schémas KiCad** du collier et des bracelets
-- **Boîtiers 3D** imprimables (PLA + TPU)
+- **Assemblage électronique** : breadboard → perfboard → PCB JLCPCB carrier
+- **Firmware Rust + Embassy** sur Raspberry Pi Pico (voir #5)
+- **Driver PCA9685** (PWM I²C, 8 canaux utilisés sur 16) avec fade in/out
+  et garde-fou conso (cap 6 moteurs simultanés)
+- **Protocole série binaire** USB CDC-ACM (framing 0xAA/0xBB + XOR)
+- **Schémas KiCad** du collier (#3) + carrier PCB controller box (#4)
+- **Boîtiers 3D** imprimables : pods TPU collier + boîtier PLA controller
+  box (#4)
+- **Assemblage final** : soudure néoprène + pods + collier + câble JST-PH
 
 ### Issues principales
 
@@ -46,22 +48,28 @@ et les milestones. Pour la scope : voir [`scope.md`](scope.md).
 - [Yorgo Haykal](https://github.com/yorgo-haykal)
 - [Lucie Moreau](https://github.com/lucie769)
 
-**Dossiers** : `daemon/`, `client/`, `patterns/`, `examples/`, `tests/`
+**Dossiers** : `daemon/`, `client/`, `examples/`, `tests/`
 
-### Missions
+### Missions (v1 — démo navigation unique)
 
-- **Couche 3 — Client Python** : API one-liner `haptic('swipe_left', intensity=0.8)`
-- **Librairie pip-installable** `haptic-skin` (publication PyPI, issue #27)
-- **Couche 2 — Démon asyncio** : parler au Pico via `pyserial` / `aioserial`
-  (en **collaboration avec ESPACE ROBOTNICS** pour le protocole binaire)
-- **Socket Unix** comme IPC principal (+ WebSocket + REST secondaires)
-- **Moteur de patterns** : parser JSON timeline, scheduler 200 Hz,
-  composition `max()`
-- **Reconnaissance gestuelle** par seuils (Phase 1 MVP)
-- **Intégrations** avec des apps externes — **livrable #1 = navigation
-  haptique style Google Maps** (issue #28, P0-blocking) : ingestion GPS,
-  routing, mapping 8 directions → 8 moteurs du collier
-- **Simulateur série** pour développer sans Pico plugué
+Détail module-par-module dans [`software-spec.md`](software-spec.md).
+Résumé :
+
+- **`serial_client.py`** : transport USB CDC-ACM vers le Pico, protocole
+  0xAA/0xBB + XOR (à figer avec ROBOTNICS en S2)
+- **`gps.py`** : NMEA du dongle u-blox NEO-6M (live `/dev/ttyACM1`) +
+  mode replay depuis `trace.json` pour la démo indoor
+- **`routing.py`** : client routing (un choix entre OSRM auto-hébergé /
+  Mapbox / Google Directions)
+- **`nav.py`** : navigation controller — mapping bearing → 8 buckets
+  directionnels → moteur correspondant
+- **`patterns.py`** : 6 patterns nav (silent, preview, approach, now,
+  arrived, off_route)
+- **`cli.py` + `examples/`** : commande `street-nav`, `replay_trace.py`,
+  `motor_test.py`
+- **`fake_pico.py`** : simulateur série pour développer sans hardware
+- **Packaging** : `pip install haptic-skin` (PyPI, issue #27) + doc
+  mkdocs (#22) + GitHub Pages (#26)
 
 ### Issues principales
 

@@ -6,44 +6,47 @@ All files here are licensed under **CERN-OHL-P v2** (see `LICENSE-HARDWARE`).
 
 ## L'objet final — description en détail
 
-HAPTIC.SKIN v1 est **un système 4 pièces** : 1 collier + 2 bracelets + 1
-boîtier de contrôle, reliés par câbles fins. Tout est piloté par un
-Raspberry Pi Pico (firmware Rust + Embassy) sur USB depuis le PC hôte.
+HAPTIC.SKIN v1 est **un système 2 pièces** : 1 collier + 1 controller box,
+reliés par un câble fin. Tout est piloté par un Raspberry Pi Pico (firmware
+Rust + Embassy) sur USB depuis le PC hôte. Le PC ingère le GPS USB et
+calcule la direction à donner.
 
 ```
-                            [PC / Arch Linux]
-                                  │ USB-A
-                                  │  ┌────────────────┐
-                                  ├──┤ GPS u-blox     │ NMEA via /dev/ttyACM1
-                                  │  │ NEO-6M USB     │
-                                  │  └────────────────┘
-                                  │ USB-micro-B
-                          ┌───────▼───────────┐
-                          │  Controller box   │
-                          │  (clip ceinture)  │
-                          │  Pico + PCA9685   │
-                          │  + 2× ULN2803A    │
-                          └──┬─────┬──────┬───┘
-                  JST-PH 9p  │     │ 6p   │ 6p  JST-PH
-                ┌────────────┘     │      └────────────┐
-                │                  │                   │
-        ┌───────▼────────┐  ┌──────▼──────┐   ┌────────▼──────┐
-        │   Collier      │  │ Bracelet G  │   │  Bracelet D   │
-        │ 8 moteurs ERM  │  │ 4 ERM       │   │  4 ERM        │
-        │ (8 directions  │  │ + 1 MPU6050 │   │  + 1 MPU6050  │
-        │  cardinales)   │  └─────────────┘   └───────────────┘
-        └────────────────┘
+                    [PC / Arch Linux]
+                       │           │
+                       │ USB-A     │ USB-A
+                       │           │
+                       │     ┌─────▼─────────┐
+                       │     │ GPS u-blox    │ /dev/ttyACM1
+                       │     │ NEO-6M USB    │ NMEA 0183
+                       │     └───────────────┘
+                       │
+                  USB micro-B
+                       │
+                ┌──────▼────────┐
+                │ Controller    │   ← clip ceinture, PLA 60×40×20 mm
+                │ box           │     Pico + PCA9685 + ULN2803A
+                │               │
+                └──────┬────────┘
+                JST-PH 9 broches
+                       │
+                ┌──────▼────────┐
+                │   COLLIER     │   ← néoprène 45 cm × 25 mm
+                │   8 moteurs   │     8 pods TPU (8 directions cardinales)
+                │   ERM 10 mm   │     Velcro à l'arrière du cou
+                └───────────────┘
 ```
 
 ### 1 · Le collier (la pièce vedette)
 
 - **Forme** : bande néoprène élastique noire, 45 cm de circonférence,
-  25 mm de large. Fermeture Velcro à l'arrière du cou, ajustable de 35 à
-  50 cm. Posé comme un tour de cou classique, repose sur les clavicules.
+  25 mm de large. Fermeture Velcro à l'arrière du cou, ajustable de
+  35 à 50 cm. Posé comme un tour de cou classique, repose sur les
+  clavicules.
 - **8 moteurs ERM coin** (10 × 2,7 mm) répartis tous les ~5,5 cm autour du
   cou. Positions (vu du dessus, "12 h" = devant) : **12, 1:30, 3, 4:30, 6,
   7:30, 9, 10:30** — ces 8 positions mappent les 8 directions cardinales
-  (N, NE, E, SE, S, SO, O, NO) dans le référentiel du porteur.
+  (N, NE, E, SE, S, SO, O, NO) **dans le référentiel du porteur**.
 - Chaque moteur est dans un **pod TPU 3D-imprimé** (12 × 10 × 5 mm), pod
   cousu/collé sur la bande néoprène, ouverture côté peau pour que la
   vibration passe au mieux. Le TPU amortit les harmoniques et empêche le
@@ -54,86 +57,71 @@ Raspberry Pi Pico (firmware Rust + Embassy) sur USB depuis le PC hôte.
   + 1 V+ commun).
 - **Poids estimé** : 80–90 g.
 
-### 2 · Les bracelets (×2)
-
-- **Forme** : bande néoprène 20 mm de large, 15 cm de long, fermeture
-  Velcro. Ajustable de 14 à 22 cm de tour de poignet.
-- **4 moteurs ERM** répartis tous les 90° autour du poignet (haut, droite,
-  bas, gauche du poignet) — renforcement directionnel possible (le moteur
-  "droite" du bracelet droit peut pulser pendant un "tourne à droite" du
-  collier).
-- **1 MPU6050 GY-521** dans un pod TPU dédié sur la face supérieure du
-  poignet. Adresse I²C : 0x68 pour le gauche, 0x69 pour le droit (AD0 tied
-  high sur l'un, low sur l'autre).
-- **Câblage** : 4 fils moteurs + 4 fils I²C/alim (SDA, SCL, 3V3, GND) =
-  **8 fils**, sortie via un **JST-PH 2.0 mm 6 broches** (4 moteurs partagent
-  un V+ commun, 4 GND séparés + SDA + SCL + 3V3 + GND = on combine en 6
-  fils en partageant les masses).
-- **Poids estimé** : 25–30 g chacun.
-
-### 3 · Le boîtier de contrôle ("controller box")
+### 2 · Le controller box
 
 - **Forme** : boîtier 3D-imprimé PLA, ~60 × 40 × 20 mm, clip ceinture ou
   brassard. Cylindre arrondi pour ne pas accrocher les vêtements.
 - **Contenu** :
   - 1 Raspberry Pi Pico H (carte fille montée sur headers femelle)
-  - 1 PCB carrier (~50 × 40 mm, 2 couches, JLCPCB) avec :
-    - PCA9685 (DIP-28 ou breakout soldé)
-    - 2× ULN2803A DIP-18 (8+8 canaux d'amplification)
-    - 4× condensateurs de découplage 100 nF (chaque chip)
-    - 2× condensateurs électrolytiques 100 µF (rails moteurs)
-    - 3× connecteurs JST-PH (1× 9p collier, 2× 6p bracelets)
+  - 1 PCB carrier (~50 × 35 mm, 2 couches, JLCPCB) avec :
+    - PCA9685 (breakout I²C 16-canaux PWM, on n'utilise que 8)
+    - 1× ULN2803A DIP-18 (8 canaux d'amplification — un seul suffit)
+    - 2× condensateurs de découplage 100 nF (Pico + PCA9685)
+    - 1× condensateur électrolytique 100 µF (rail moteurs)
+    - 1× connecteur JST-PH 9 broches (vers le collier)
 - **Sorties** :
-  - 1 port USB-micro-B vers le PC hôte (alim + données série)
-  - 3 ports JST-PH vers les wearables
-  - 1 LED status (RGB ou bicolore, "ready / running / error")
+  - 1 port USB-micro-B vers le PC hôte (alim + données série CDC-ACM)
+  - 1 port JST-PH 9p vers le collier
+  - 1 LED status RGB ("ready / running / error")
 - **Poids estimé** : 45–55 g.
 
-### 4 · Le dongle GPS (côté PC, pas porté)
+### 3 · Le dongle GPS (côté PC, pas porté)
 
-- u-blox NEO-6M en clé USB avec antenne céramique
-- Branché directement dans le laptop, apparaît comme `/dev/ttyACM1`
-- Sort en NMEA 0183, parsé par le démon Python (`pynmea2`)
+- **u-blox NEO-6M** en clé USB avec antenne céramique
+- Branché directement dans un port USB du laptop
+- Apparaît comme `/dev/ttyACM1` sur Linux
+- Sort en NMEA 0183 à 1 Hz (sentences GGA, RMC)
+- Le daemon Python lit `RMC.course_over_ground` pour le heading utilisateur
 - Pour la démo *outdoor* uniquement ; le mode *indoor* rejoue une trace
   GPS pré-enregistrée donc le dongle n'est pas obligatoire
 
 ## Architecture électrique
 
 ```
-[Pico GP4 SDA / GP5 SCL] ──I²C 400 kHz──┐
-                                         ├──► PCA9685 (0x40, 16 canaux PWM)
-                                         ├──► MPU6050 bracelet G (0x68)
-                                         └──► MPU6050 bracelet D (0x69)
+[Pico GP4 SDA / GP5 SCL] ──I²C 400 kHz──► PCA9685 (0x40)
 
-[PCA9685 ch 0..7]  ──► [ULN2803A #1 in 1..8] ──out──► [8 moteurs collier]
-[PCA9685 ch 8..15] ──► [ULN2803A #2 in 1..8] ──out──► [4+4 moteurs bracelets]
-                                              COM ◄── [+5 V USB Vbus]
+[PCA9685 ch 0..7] ──► [ULN2803A in 1..8] ──out──► [8 moteurs collier]
+                                            COM ◄── [+5 V USB Vbus]
 
 [Pico VBUS 5 V] ──┬──► PCA9685 V+
-                  └──► ULN2803A COM (rails moteurs)
-[Pico 3V3]   ─────┴──► PCA9685 VCC logique + MPU6050 VCC
-[Pico GND]   ─────┴──► GND commun partout
+                  └──► ULN2803A COM (rail moteurs)
+[Pico 3V3]   ─────┴──► PCA9685 VCC logique
+[Pico GND]   ─────┴──► GND commun
 ```
 
 **Budget courant** :
-- 8 moteurs simultanés à 70 % duty × 80 mA = **280 mA pic**
-- + Pico 25 mA + PCA9685 10 mA + 2 MPU6050 8 mA = **~325 mA total**
-- USB 2.0 plafond 500 mA → **on reste à 65 % de la limite**
+- 4 moteurs simultanés à 70 % duty × 80 mA = **224 mA pic** (cas usuel,
+  démo nav : 1-2 moteurs actifs à la fois)
+- Cas extrême 8 moteurs simultanés à 70 % duty = **448 mA pic**
+- + Pico 25 mA + PCA9685 10 mA = **~485 mA total** (vraiment pire cas)
+- USB 2.0 plafond 500 mA → **firmware enforce un cap à 6 moteurs simultanés**
+  pour rester à ~360 mA = 72 % de la limite USB
 
-Le firmware (`power_guard.rs`) enforce le plafond "max 8 moteurs simultanés"
-en compositionnant les patterns avec un `max()` après limitation par moteur.
+Le firmware (`power_guard.rs`) enforce le plafond en compositionnant les
+patterns avec un `max()` après limitation par moteur.
 
 ## Comment on le porte
 
-1. Brancher le dongle GPS dans le PC (optionnel, mode indoor possible sans).
-2. Lancer le démon : `python -m haptic_skin.daemon`.
+1. Brancher le dongle GPS dans un port USB du PC (optionnel — mode indoor
+   possible sans).
+2. Lancer le démon : `python -m haptic_skin.daemon` (ou `street-nav <orig> <dest>`).
 3. Mettre **le collier** autour du cou, ajuster Velcro pour que les 8 pods
-   moteurs touchent la peau (pas trop serré).
-4. Mettre **les bracelets** aux poignets, le pod IMU sur le dessus.
-5. Clipper **la controller box** à la ceinture ou la passer en bandoulière.
-6. Brancher les 3 câbles JST-PH dans la box.
-7. Brancher le câble USB de la box dans le PC.
-8. LED passe au vert → tout est prêt. Lancer la démo : `python street_nav.py`.
+   moteurs touchent la peau sans trop serrer (pas plus serré qu'un collier
+   ras du cou classique).
+4. Clipper **la controller box** à la ceinture ou la passer en bandoulière.
+5. Brancher le câble JST-PH 9p du collier dans la box.
+6. Brancher le câble USB micro-B de la box dans le PC.
+7. LED passe au vert → tout est prêt.
 
 ## Le flow démo *navigation*
 
@@ -150,28 +138,28 @@ Du point de vue technique :
 
 ```
 [GPS dongle USB / fixture trace.json]
-       │  NMEA 0183 (GGA, RMC) à 1 Hz
+       │  NMEA 0183 (GGA, RMC) à 1 Hz, donne lat/lon + course-over-ground
        ▼
 [Démon Python]
        │  routing : OSRM / Mapbox / Google Directions
-       ├──► itinéraire = liste de [step, bearing, distance]
+       ├──► itinéraire = liste de [step, bearing_absolu, distance]
        │
        │  À chaque tick GPS :
        │   • distance au prochain step
-       │   • bearing du step relatif au cap utilisateur (depuis IMU collier
-       │     ou compass GPS)
-       │   • bucket directionnel = round(bearing / 45°) % 8
+       │   • bearing relatif = step.bearing - user.course_over_ground
+       │   • bucket directionnel = round(bearing_relatif / 45°) % 8
        │
        │  Pattern :
        │   • d > 50 m : silence
        │   • 50 > d > 20 m : pulse 200 ms toutes les 2 s sur le bucket
-       │   • 20 > d > 0 m : pulse 200 ms toutes les 800 ms, intensité × 1,5
-       │   • d ~ 0 m : pulse fort 800 ms
-       │   • arrived : balayage circulaire 8 moteurs en 1,5 s
+       │   • 20 > d > 5 m  : pulse 200 ms toutes les 800 ms, intensité × 1,5
+       │   • d ≤ 5 m       : pulse fort 800 ms (le virage est ici)
+       │   • arrived       : balayage circulaire 8 moteurs en 1,5 s
+       │   • off-route     : flash arrière 3× (motor 6 h, "demi-tour")
        │
        ▼  trames série binaires 0xAA / 0xBB (XOR)
 [Pico Rust+Embassy]
-       │  parse → set_pwm(motor_id, intensity_12bit)
+       │  parse → set_pwm(motor_id, intensity_12bit, duration_ms)
        ▼
 [PCA9685 → ULN2803A → moteur ERM] → 🫨
 ```
@@ -189,13 +177,16 @@ Décomposition :
 
 - **PCA9685 cannot drive ERM motors directly.** It sources ~10 mA / sinks
   ~25 mA per channel; ERM motors draw 80–100 mA at full speed.
-  ULN2803A Darlington arrays are mandatory amplifiers.
+  ULN2803A Darlington array is mandatory amplifier.
 - **Flyback diodes** : ULN2803A integrates them on its outputs (COM pin =
   motor V+ rail). No separate 1N4148 needed.
-- **Power budget**: USB 5 V / 500 mA. 16 motors at full draw = ~1.3 A >
-  limit. Firmware enforces max 8 concurrent motors at 70 % duty.
+- **Power budget**: USB 5 V / 500 mA. Firmware caps at 6 concurrent motors
+  at 70 % duty (~360 mA total).
 - **ERM rated 3 V driven from 5 V** : firmware caps duty cycle at ~60 %
   to keep average voltage ≈ 3 V (preserves motor lifespan).
+- **Heading source** : GPS course-over-ground (NMEA RMC), not IMU. Works
+  when user is moving (which is the demo case). When stopped at a
+  waypoint, the last known COG is held.
 - See `../research/hardware.md` and `../research-report/main.typ` §3 for
   the full rationale.
 
@@ -206,13 +197,12 @@ hardware/
 ├── BOM.md                     ← BOM détaillée + plan de commande
 ├── README.md                  ← ce fichier (architecture + description objet)
 ├── necklace/
-│   ├── necklace.kicad_pro
-│   └── enclosure.stl
-├── bracelet/
-│   ├── bracelet.kicad_pro
-│   └── strap_holder.stl
+│   ├── pod.stl                ← pod TPU pour 1 moteur (×8 par collier)
+│   └── wiring.md
 ├── controller-box/
-│   ├── carrier.kicad_pro      ← PCB Pico + PCA9685 + 2× ULN2803A
+│   ├── carrier.kicad_pro      ← PCB carrier Pico + PCA9685 + ULN2803A
+│   ├── carrier.kicad_sch
+│   ├── carrier.kicad_pcb
 │   └── enclosure.stl
 └── docs/
     ├── wiring-diagram.png
@@ -224,5 +214,5 @@ hardware/
 - **KiCad 8+** for schematics and PCB.
 - **FreeCAD** or **OpenSCAD** for enclosures (export `.stl` for 3D printing).
 - **JLCPCB** for production PCBs (after breadboard validation).
-- **Fab lab** (accès confirmé, #23 closed) : fer à souder réglable, multimètre,
-  oscilloscope, imprimante 3D PLA + TPU.
+- **Fab lab** (accès confirmé, #23 closed) : fer à souder réglable,
+  multimètre, oscilloscope, imprimante 3D PLA + TPU.

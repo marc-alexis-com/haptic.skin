@@ -1,8 +1,9 @@
 # `firmware/` — Raspberry Pi Pico (Rust + Embassy)
 
 Firmware running on the Pico. Reads commands from the host daemon over USB
-serial (CDC-ACM), drives the 16 ERM motors via PCA9685 + ULN2803A, reads the
-2× MPU6050 IMUs, streams gesture events upstream.
+serial (CDC-ACM), drives 8 ERM motors via PCA9685 + ULN2803A. No IMU and no
+upstream events in v1 (scope cut 2026-05-18 — heading comes from GPS
+course-over-ground on the host).
 
 ## Why Rust + Embassy
 
@@ -27,13 +28,12 @@ firmware/
 │   ├── main.rs               # Embassy executor entry point
 │   ├── config.rs             # I²C pins, motor map, PWM frequency
 │   ├── drivers/
-│   │   ├── pca9685.rs        # 16-channel PWM driver (embedded-hal I²C)
-│   │   ├── mpu6050.rs        # IMU driver (2× sensors on shared bus)
-│   │   └── uart_proto.rs     # binary serial framing (0xAA / 0xBB + XOR)
+│   │   ├── pca9685.rs        # 16-channel PWM driver (we use 8)
+│   │   └── status_led.rs     # RGB or bicolour status indicator
+│   ├── proto.rs              # binary serial framing (0xAA / 0xBB + XOR)
 │   ├── tasks/
 │   │   ├── motor_scheduler.rs  # max() composition, fade in/out
-│   │   ├── imu_stream.rs       # sample + filter IMU at fixed rate
-│   │   └── power_guard.rs      # limit concurrent motors (≤ 8)
+│   │   └── power_guard.rs      # cap concurrent motors at 6
 │   └── lib.rs
 └── tests/
     └── serial_loopback.rs    # dev-only, no PC needed
@@ -67,8 +67,8 @@ cargo run --release       # configured to use probe-rs runner in .cargo/config.t
 - **Host → Pico**: `0xAA [cmd] [len] [payload…] [XOR]`
 - **Pico → Host**: `0xBB [event] [len] [payload…] [XOR]`
 - Transport: USB CDC-ACM (USB Full Speed, baud rate nominal).
-- Commands: `set_motor(idx, intensity)`, `set_all(bitmap, intensities)`, `stop_all()`
-- Events: `gesture(id)`, `imu_sample(acc, gyro)`, `error(code)`
+- Commands: `set_motor(idx, intensity, duration_ms)`, `set_all(intensities)`, `stop_all()`, `ping`
+- Events: `pong`, `error(code)` (no sensor events in v1)
 
 See `docs/protocol.md` for the full spec (WIP).
 

@@ -8,22 +8,23 @@
 Le prototype minimal à produire :
 
 - **1 collier** avec **8 moteurs ERM** répartis sur 8 directions cardinales
-- **2 bracelets**, chacun avec **4 moteurs ERM** + **1 IMU MPU6050**
-- **Communication simultanée** entre le collier et les 2 bracelets — les 3
-  wearables fonctionnent ensemble en temps réel, pilotés par un unique
-  Raspberry Pi Pico connecté en USB au PC hôte
-- **Démon Python** asyncio + **API one-liner** + **librairie `haptic-skin`**
+- **1 controller box** (Pico + PCA9685 + ULN2803A) reliée par câble USB
+  au PC hôte
+- **1 dongle GPS USB** (u-blox NEO-6M) côté PC, en `/dev/ttyACM1`
+- **Démon Python** asyncio + CLI `street-nav` + librairie `haptic-skin`
   installable via `pip`
-- **1 scénario de démo** live pour la soutenance (voir §Usages) — navigation haptique uniquement
+- **1 scénario de démo** live pour la soutenance — navigation haptique uniquement
 - **Code + schémas + doc open-source** sur GitHub
 
-### Ce que le MVP **n'est pas**
+### Ce que le MVP **n'est pas** (décisions 2026-05-18)
 
+- **Pas de bracelets** — collier seul
+- **Pas d'IMU** — heading = GPS course-over-ground
+- **Pas de reconnaissance gestuelle** — pas d'input utilisateur sur le wearable
 - Pas un dispositif médical (pas de revendication MDR)
 - Pas un produit grand public (pas de packaging, pas de certif CE)
 - Pas de sans fil — câblé USB, v2 stretch goal
-- Pas de reconnaissance gestuelle par ML — seuils seulement en v1
-- Pas de PCB custom — perfboard + boîtiers 3D
+- Pas d'autre démo que la navigation
 
 ## Objectifs principaux
 
@@ -78,24 +79,21 @@ silencieuse, gaming — explicitement écartés, issues #15/#16/#17 closes).
 ### 4. Fonctionnement
 
 ```
-[App utilisateur]
-      │  haptic('swipe_left', intensity=0.8)
-      ▼
-[Client Python] ──Unix socket──► [Démon asyncio]
-                                      │  trame 0xAA [cmd] [XOR]
-                                      ▼    (USB série 921 600 bauds)
-                                 [Raspberry Pi Pico]
-                                      │  I²C 400 kHz
-                                      ▼
-                              [PCA9685] ──PWM──► [ULN2803A]
-                                                      │
-                                                      ▼
-                                              [16 moteurs ERM] → 🫨
+[GPS dongle USB] ──► [Démon Python asyncio] ──► [Routing engine]
+                            │
+                            │  trame 0xAA [cmd] [XOR]  (USB CDC-ACM)
+                            ▼
+                       [Raspberry Pi Pico, Rust+Embassy]
+                            │  I²C 400 kHz
+                            ▼
+                       [PCA9685] ──PWM──► [ULN2803A]
+                                              │
+                                              ▼
+                                       [8 moteurs ERM] → 🫨
 ```
 
-Sens montant : les 2 **MPU6050** des bracelets remontent leurs données via
-I²C → Pico → série → démon → événement `gesture(...)` → callback dans le
-programme utilisateur. Latence totale < 20 ms.
+Voie unique descendante (PC → collier). Pas de remontée capteur en v1
+(pas d'IMU). Latence cible end-to-end < 200 ms.
 
 ## API open-source
 
