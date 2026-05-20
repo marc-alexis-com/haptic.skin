@@ -57,6 +57,10 @@ notion-infos.txt
 notion-guides-comparaison.md
 candidature-et-retour-jury.txt
 
+# --- Private suivi entre Marc-Alexis et Claude (jamais push) ---
+.private/
+CLAUDE.md
+
 # --- Misc ---
 research-report/a-mail.png
 *.log
